@@ -269,7 +269,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-t from-[#5c3a21] via-[#b58a60] to-[#dcccae] text-white py-10">
+      <footer id="footer" className="bg-gradient-to-t from-[#5c3a21] via-[#b58a60] to-[#dcccae] text-white py-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <div>
