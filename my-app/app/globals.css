@@ -1,0 +1,234 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* UBRA Color Palette */
+  --primary-beige: #c8a97e;
+  --secondary-brown: #dcccae;
+  --accent-cream: #eaddc8;
+  --background-off-white: #fffdf9;
+  --text-charcoal: #2b2b2b;
+
+  --background: #fffdf9;
+  --foreground: #2b2b2b;
+  --card: #ffffff;
+  --card-foreground: #2b2b2b;
+  --popover: #fffdf9;
+  --popover-foreground: #2b2b2b;
+  --primary: #c8a97e;
+  --primary-foreground: #fffdf9;
+  --secondary: #885430;
+  --secondary-foreground: #fffdf9;
+  --muted: #eaddc8;
+  --muted-foreground: #5c3a21;
+  --accent: #c8a97e;
+  --accent-foreground: #5c3a21;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #eaddc8;
+  --input: #eaddc8;
+  --ring: #c8a97e;
+  --chart-1: #c8a97e;
+  --chart-2: #5c3a21;
+  --chart-3: #eaddc8;
+  --chart-4: #8b6f47;
+  --chart-5: #d4b896;
+  --radius: 0.625rem;
+  --sidebar: #fffdf9;
+  --sidebar-foreground: #2b2b2b;
+  --sidebar-primary: #c8a97e;
+  --sidebar-primary-foreground: #fffdf9;
+  --sidebar-accent: #5c3a21;
+  --sidebar-accent-foreground: #fffdf9;
+  --sidebar-border: #eaddc8;
+  --sidebar-ring: #c8a97e;
+}
+
+.dark {
+  --background: #1a1410;
+  --foreground: #f5f1ec;
+  --card: #2b2219;
+  --card-foreground: #f5f1ec;
+  --popover: #2b2219;
+  --popover-foreground: #f5f1ec;
+  --primary: #c8a97e;
+  --primary-foreground: #1a1410;
+  --secondary: #eaddc8;
+  --secondary-foreground: #1a1410;
+  --muted: #5c3a21;
+  --muted-foreground: #c8a97e;
+  --accent: #eaddc8;
+  --accent-foreground: #1a1410;
+  --destructive: #ef4444;
+  --destructive-foreground: #1a1410;
+  --border: #5c3a21;
+  --input: #5c3a21;
+  --ring: #c8a97e;
+  --chart-1: #c8a97e;
+  --chart-2: #eaddc8;
+  --chart-3: #8b6f47;
+  --chart-4: #d4b896;
+  --chart-5: #6b4c35;
+  --sidebar: #1a1410;
+  --sidebar-foreground: #f5f1ec;
+  --sidebar-primary: #c8a97e;
+  --sidebar-primary-foreground: #1a1410;
+  --sidebar-accent: #eaddc8;
+  --sidebar-accent-foreground: #1a1410;
+  --sidebar-border: #5c3a21;
+  --sidebar-ring: #c8a97e;
+}
+
+@theme inline {
+  --font-sans: "Poppins", "Poppins Fallback";
+  --font-serif: "Lora", "Lora Fallback";
+  --font-mono: "Poppins", "Poppins Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Added modern gradient background and animations */
+@layer utilities {
+  .texture-woven {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(200, 169, 126, 0.03) 2px,
+      rgba(200, 169, 126, 0.03) 4px
+    );
+  }
+
+  /* Enhanced hero gradient with radial and linear blend for premium artisan aesthetic */
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
+  .gradient-hero {
+    background: radial-gradient(circle at 20% 20%, #dcccae, #c8a97e 40%, #5c3a21 90%);
+    background-attachment: fixed;
+    position: relative;
+  }
+
+  /* Alternative animated linear gradient for dynamic effect */
+  .gradient-hero-animated {
+    background: linear-gradient(135deg, #dcccae 0%, #c8a97e 50%, #5c3a21 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 20s ease infinite;
+    position: relative;
+  }
+
+  /* Faint texture overlay for handcrafted feel */
+  .gradient-hero::after,
+  .gradient-hero-animated::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 1px,
+        rgba(0, 0, 0, 0.01) 1px,
+        rgba(0, 0, 0, 0.01) 2px
+      ), repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 0, 0, 0.01) 1px, rgba(0, 0, 0, 0.01) 2px);
+    pointer-events: none;
+  }
+
+  /* New Amane Soft-inspired gradient with brown and beige palette for premium aesthetic */
+  .gradient-amane-hero {
+    background: radial-gradient(circle at 50% 50%, #eaddc8 0%, #dcccae 25%, #c8a97e 50%, #8b6f47 75%, #5c3a21 100%);
+    background-attachment: fixed;
+    position: relative;
+  }
+
+  /* Replaced dark gradient with lighter, more subtle Amane Soft-inspired gradient for better text readability */
+  .gradient-amane-dark {
+    background: radial-gradient(ellipse at 50% 40%, #f5f1ed 0%, #ede5d9 25%, #e8dcc5 50%, #dccfb8 75%, #d4b896 100%);
+    background-attachment: fixed;
+    position: relative;
+  }
+
+  /* Animated version that subtly shifts like Amane Soft */
+  .gradient-amane-animated {
+    background: radial-gradient(circle at 50% 50%, #eaddc8 0%, #dcccae 20%, #c8a97e 45%, #8b6f47 70%, #5c3a21 100%);
+    background-size: 200% 200%;
+    animation: gradientRadialShift 25s ease-in-out infinite;
+    position: relative;
+  }
+
+  @keyframes gradientRadialShift {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
+  /* Elegant gradient for general use */
+  .gradient-elegant {
+    background: linear-gradient(135deg, #dcccae 0%, #ffffff 100%);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+    position: relative;
+  }
+}
