@@ -1,0 +1,21 @@
+{
+  "name": "ubra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenth-dev/UBRA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kenth-dev/UBRA/issues"
+  },
+  "homepage": "https://github.com/kenth-dev/UBRA#readme"
+}
