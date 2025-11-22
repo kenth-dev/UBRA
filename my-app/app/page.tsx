@@ -67,10 +67,10 @@ export default function LandingPage() {
   ]
 
   const team = [
-    { name: "Kenneth Gasmen", role: "CEO / Full Stack Developer", image: "/team/kenneth-gasmen.png?width=90&height=90" },
-    { name: "Jomer Ignacio", role: "CTO / Full Stack Developer", image: "/team/jomer-ignacio.png?width=90&height=90" },
-    { name: "Bill Richmond Udarbe", role: "CMO / Marketing", image: "/team/bill-richmond-udarbe.png?width=90&height=90" },
-    { name: "Sander Sedano", role: "Adviser / Mentor", image: "/team/sander-sedano.png?width=90&height=90" },
+    { name: "Kenneth Gasmen", role: "CEO / Full Stack Developer", image: "/team/kenneth-gasmen.png" },
+    { name: "Jomer Ignacio", role: "CTO / Full Stack Developer", image: "/team/jomer-ignacio.png" },
+    { name: "Bill Richmond Udarbe", role: "CMO / Marketing", image: "/team/bill-richmond-udarbe.png" },
+    { name: "Sander Sedano", role: "Adviser / Mentor", image: "/team/sander-sedano.png" },
   ]
 
   return (
