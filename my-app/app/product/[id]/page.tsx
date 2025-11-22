@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useParams } from "next/navigation"
 import { useApp } from "@/lib/context"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
@@ -22,24 +23,29 @@ interface Artisan {
   image: string
 }
 
-export default function ProductPage({ params }: { params: { id: string } }) {
+export default function ProductPage() {
+  const params = useParams()
+  const id = params?.id as string | undefined
+
   const [product, setProduct] = useState<Product | null>(null)
   const [artisan, setArtisan] = useState<Artisan | null>(null)
   const { addToCart } = useApp()
 
   useEffect(() => {
+    if (!id) return
+
     Promise.all([
       fetch("/data/products.json").then((res) => res.json()),
       fetch("/data/artisans.json").then((res) => res.json()),
     ]).then(([productsData, artisansData]) => {
-      const prod = productsData.products.find((p: Product) => p.id === Number.parseInt(params.id))
+      const prod = productsData.products.find((p: Product) => p.id === Number(id))
       if (prod) {
         setProduct(prod)
         const art = artisansData.artisans.find((a: Artisan) => a.id === prod.artisanId)
         setArtisan(art)
       }
     })
-  }, [params.id])
+  }, [id])
 
   if (!product) return <div className="pt-20">Loading...</div>
 

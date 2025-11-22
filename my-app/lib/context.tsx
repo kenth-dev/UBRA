@@ -9,6 +9,7 @@ interface CartItem {
   price: number
   quantity: number
   artisanId: number
+  image?: string
 }
 
 interface Comment {
@@ -58,6 +59,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
           id: product.id,
           name: product.name,
           price: product.price,
+          image: product.image,
           quantity: 1,
           artisanId: product.artisanId,
         },

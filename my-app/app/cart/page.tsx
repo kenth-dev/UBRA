@@ -59,8 +59,8 @@ export default function CartPage() {
               <div className="space-y-4">
                 {cart.map((item) => (
                   <Card key={item.id} className="p-4 flex gap-4 items-start">
-                    <div className="w-20 h-20 bg-muted rounded flex-shrink-0">
-                      <Image src="/diverse-products-still-life.png" alt={item.name} width={80} height={80} />
+                    <div className="w-20 h-20 bg-muted rounded flex-shrink-0 relative overflow-hidden">
+                      <Image src={item.image || "/placeholder.svg"} alt={item.name} fill className="object-cover" />
                     </div>
 
                     <div className="flex-1">
