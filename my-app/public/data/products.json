@@ -5,7 +5,7 @@
       "artisanId": 1,
       "name": "Woven Abaca Basket",
       "price": 2500,
-      "image": "/images/shop/abaca_basket.jpg?height=300&width=300",
+      "image": "/images/shop/abaca_basket.jpg",
       "description": "Handwoven abaca basket made using traditional techniques from Cagayan.",
       "category": "Textiles"
     },

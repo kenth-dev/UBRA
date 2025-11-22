@@ -138,17 +138,10 @@ export default function LandingPage() {
                 size="lg"
                 className="bg-primary hover:bg-secondary text-primary-foreground text-base h-12 transition-all hover:shadow-lg hover:scale-105"
               >
-                Explore Artisans
+                Shop Now
               </Button>
             </Link>
             <a href="#features">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-primary text-secondary hover:bg-muted h-12 text-base bg-transparent"
-              >
-                Learn More
-              </Button>
             </a>
           </div>
         </div>
