@@ -14,7 +14,7 @@
       "artisanId": 1,
       "name": "Abaca Wall Hanging",
       "price": 3000,
-      "image": "/images/shop/abaca_wall_hanging.jpg?height=300&width=300",
+      "image": "/images/shop/abaca_wall_hanging.jpg",
       "description": "Beautiful wall hanging featuring intricate abaca weaving patterns.",
       "category": "Textiles"
     },
@@ -23,7 +23,7 @@
       "artisanId": 2,
       "name": "Ceramic Dinner Bowl",
       "price": 1800,
-      "image": "/images/shop/bowls.jpg?height=300&width=300",
+      "image": "/images/shop/bowls.jpg",
       "description": "Hand-thrown ceramic bowl perfect for any dining table.",
       "category": "Pottery"
     },
@@ -32,7 +32,7 @@
       "artisanId": 2,
       "name": "Pottery Vase Set",
       "price": 4500,
-      "image": "/images/shop/vase_set.jpg?height=300&width=300",
+      "image": "/images/shop/vase_set.jpg",
       "description": "Set of 3 handcrafted ceramic vases with unique glazing.",
       "category": "Pottery"
     },
@@ -41,7 +41,7 @@
       "artisanId": 3,
       "name": "Wooden Carved Figure",
       "price": 5000,
-      "image": "/images/shop/wooden_carved.jpg?height=300&width=300",
+      "image": "/images/shop/wooden_carved.jpg",
       "description": "Intricate wooden carving showcasing traditional Filipino artistry.",
       "category": "Wood Carving"
     },
@@ -50,7 +50,7 @@
       "artisanId": 3,
       "name": "Wood Art Panel",
       "price": 3500,
-      "image": "/images/shop/wall_art.jpg?height=300&width=300",
+      "image": "/images/shop/wall_art.jpg",
       "description": "Decorative wood panel with hand-carved traditional patterns.",
       "category": "Wood Carving"
     }
