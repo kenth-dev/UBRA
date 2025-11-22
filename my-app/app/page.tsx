@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { ShoppingBag, Users, Palette, Gavel, Heart, Zap, Menu, X } from "lucide-react"
+import { ShoppingBag, Users, Palette, Gavel, Heart, Zap } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,26 +23,31 @@ export default function LandingPage() {
       icon: Users,
       title: "Social Feed",
       description: "Connect with artisans through posts and stories",
+      href: "/feed",
     },
     {
       icon: ShoppingBag,
       title: "Shop",
       description: "Browse and buy handmade products directly from artisans",
+      href: "/shop",
     },
     {
       icon: Palette,
       title: "Artisan Museum",
       description: "Discover the stories and cultural heritage behind each craft",
+      href: "/museum",
     },
     {
       icon: Gavel,
       title: "Auction Feature",
       description: "Bid on exclusive and limited-edition artisan pieces",
+      href: "/auction",
     },
     {
       icon: Heart,
       title: "Community Donation",
       description: "Support a cause with every purchase you make",
+      href: "/donation",
     },
   ]
 
@@ -62,10 +67,10 @@ export default function LandingPage() {
   ]
 
   const team = [
-    { name: "Kenneth Gasmen", role: "CEO / Full Stack Developer", image: "/team/kenneth-gasmen.png" },
-    { name: "Jomer Ignacio", role: "CTO / Full Stack Developer", image: "/team/jomer-ignacio.png" },
-    { name: "Bill Richmond Udarbe", role: "CMO / Marketing", image: "/team/bill-richmond-udarbe.png" },
-    { name: "Sander Sedano", role: "Adviser / Mentor", image: "/team/sander-sedano.png" },
+    { name: "Kenneth Gasmen", role: "CEO / Full Stack Developer", image: "/team/kenneth-gasmen.png?width=90&height=90" },
+    { name: "Jomer Ignacio", role: "CTO / Full Stack Developer", image: "/team/jomer-ignacio.png?width=90&height=90" },
+    { name: "Bill Richmond Udarbe", role: "CMO / Marketing", image: "/team/bill-richmond-udarbe.png?width=90&height=90" },
+    { name: "Sander Sedano", role: "Adviser / Mentor", image: "/team/sander-sedano.png?width=90&height=90" },
   ]
 
   return (
@@ -79,9 +84,9 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <div className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <Image src="/logo-ubra.png" alt="UBRA Logo" width={90} height={90} />
-            </div>
+            </Link>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex gap-8">
@@ -101,33 +106,11 @@ export default function LandingPage() {
 
             {/* CTA Button */}
             <div className="hidden sm:block">
-              <Button className="bg-primary hover:bg-secondary text-primary-foreground">Get Started</Button>
+              <Link href="/shop">
+                <Button className="bg-primary hover:bg-secondary text-primary-foreground">Get Started</Button>
+              </Link>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
-
-          {/* Mobile Menu */}
-          {isMobileMenuOpen && (
-            <div className="md:hidden pb-4 border-t border-muted pt-4 space-y-3">
-              <a href="#features" className="block hover:text-primary transition">
-                Features
-              </a>
-              <a href="#business" className="block hover:text-primary transition">
-                Business
-              </a>
-              <a href="#team" className="block hover:text-primary transition">
-                Team
-              </a>
-              <a href="#footer" className="block hover:text-primary transition">
-                Contact
-              </a>
-              <Button className="w-full bg-primary hover:bg-secondary text-primary-foreground">Get Started</Button>
-            </div>
-          )}
         </div>
       </nav>
 
@@ -150,19 +133,23 @@ export default function LandingPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-primary hover:bg-secondary text-primary-foreground text-base h-12 transition-all hover:shadow-lg hover:scale-105"
-            >
-              Explore Artisans
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-primary text-secondary hover:bg-muted h-12 text-base bg-transparent"
-            >
-              Learn More
-            </Button>
+            <Link href="/shop">
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-secondary text-primary-foreground text-base h-12 transition-all hover:shadow-lg hover:scale-105"
+              >
+                Explore Artisans
+              </Button>
+            </Link>
+            <a href="#features">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-primary text-secondary hover:bg-muted h-12 text-base bg-transparent"
+              >
+                Learn More
+              </Button>
+            </a>
           </div>
         </div>
 
@@ -185,16 +172,15 @@ export default function LandingPage() {
             {features.map((feature, idx) => {
               const Icon = feature.icon
               return (
-                <Card
-                  key={idx}
-                  className="p-6 border-muted hover:shadow-lg hover:border-primary transition-all duration-300 hover:scale-105 cursor-pointer bg-background"
-                >
-                  <div className="w-12 h-12 bg-muted rounded-lg flex items-center justify-center mb-4">
-                    <Icon size={24} className="text-secondary" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-                </Card>
+                <Link key={idx} href={feature.href}>
+                  <Card className="p-6 border-muted hover:shadow-lg hover:border-primary transition-all duration-300 hover:scale-105 cursor-pointer bg-background h-full">
+                    <div className="w-12 h-12 bg-muted rounded-lg flex items-center justify-center mb-4">
+                      <Icon size={24} className="text-secondary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                  </Card>
+                </Link>
               )
             })}
           </div>
@@ -228,10 +214,11 @@ export default function LandingPage() {
       {/* Team Section */}
       <section id="team" className="py-20 px-4 sm:px-6 lg:px-8 bg-card">
         <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Meet Our Team</h2>
-              <p className="text-lg text-muted-foreground">Passionate builders dedicated to empowering artisans</p>
-            </div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Meet Our Team</h2>
+            <p className="text-lg text-muted-foreground">Passionate builders dedicated to empowering artisans</p>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, idx) => (
               <div key={idx} className="text-center">
@@ -259,12 +246,14 @@ export default function LandingPage() {
           <p className="text-lg text-secondary/90 mb-8 max-w-2xl mx-auto">
             Join the movement to celebrate and empower Filipino artisans. Your support makes a difference.
           </p>
-          <Button
-            size="lg"
-            className="bg-primary hover:bg-accent text-primary-beige font-semibold h-12 text-base transition-all hover:shadow-lg"
-          >
-            Start Exploring
-          </Button>
+          <Link href="/shop">
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-accent text-secondary font-semibold h-12 text-base transition-all hover:shadow-lg"
+            >
+              Start Exploring
+            </Button>
+          </Link>
         </div>
       </section>
 
@@ -274,7 +263,9 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Image src="/logo-ubra.png" alt="UBRA Logo" width={150} height={150} />
+                <Link href="/">
+                                <Image src="/logo-ubra.png" alt="UBRA Logo" width={90} height={90} />
+                </Link>
               </div>
               <p className="text-sm text-primary-foreground/80">Handmade. Heart-made. Community-driven.</p>
             </div>
@@ -304,19 +295,19 @@ export default function LandingPage() {
               <h4 className="font-semibold mb-4">Platform</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="#" className="hover:text-primary transition">
+                  <Link href="/shop" className="hover:text-primary transition">
                     Shop
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition">
+                  <Link href="/feed" className="hover:text-primary transition">
                     Community
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition">
+                  <Link href="/museum" className="hover:text-primary transition">
                     Museum
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

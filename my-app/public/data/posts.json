@@ -1,0 +1,48 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "artisanId": 1,
+      "artisanName": "Mercy Racaldo",
+      "artisanAvatar": "/images/profile/Mercy_Racaldo.jpg",
+      "image": "/images/feed/abaca_weaving.png?height=400&width=400",
+      "caption": "Just finished this beautiful abaca weaving. Each thread tells a story of our heritage.",
+      "likes": 234,
+      "comments": [
+        {
+          "id": 1,
+          "name": "Maria Santos",
+          "text": "This is absolutely stunning! Do you have more pieces available?",
+          "timestamp": "2 hours ago"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "artisanId": 2,
+      "artisanName": "Rosario Cruz",
+      "artisanAvatar": "/images/profile/Rosario_Cruz.jpg",
+      "image": "/images/feed/ceramic_bowls.png?height=400&width=400",
+      "caption": "Handcrafted ceramic bowls made with techniques passed down through generations.",
+      "likes": 189,
+      "comments": [
+        {
+          "id": 1,
+          "name": "Juan Dela Cruz",
+          "text": "Your pottery is incredible!",
+          "timestamp": "4 hours ago"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "artisanId": 3,
+      "artisanName": "Rodrigo Santos",
+      "artisanAvatar": "/images/profile/Rodrigo_Santos.jpg",
+      "image": "/images/feed/wood_carver.jpg?height=400&width=400",
+      "caption": "Wood carving session. Creating intricate details on this new piece.",
+      "likes": 312,
+      "comments": []
+    }
+  ]
+}

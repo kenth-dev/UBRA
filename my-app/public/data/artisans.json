@@ -1,0 +1,34 @@
+{
+  "artisans": [
+    {
+      "id": 1,
+      "name": "Mercy Racaldo",
+      "role": "Abaca Weaver",
+      "bio": "A master weaver from Cagayan with 20+ years of experience in traditional abaca weaving. Mercy's work preserves the cultural heritage of Filipino textile arts.",
+      "image": "/images/profile/Mercy_Racaldo.jpg",
+      "location": "Claveria, Cagayan",
+      "specialty": "Abaca Textiles",
+      "productCount": 2
+    },
+    {
+      "id": 2,
+      "name": "Rosario Cruz",
+      "role": "Potter",
+      "bio": "A passionate ceramicist dedicated to bringing traditional pottery techniques into modern homes. Rosario creates unique pieces that blend art and functionality.",
+      "image": "/images/profile/Rosario_Cruz.jpg",
+      "location": "Ilocos Region",
+      "specialty": "Pottery",
+      "productCount": 2
+    },
+    {
+      "id": 3,
+      "name": "Rodrigo Santos",
+      "role": "Wood Carver",
+      "bio": "A talented wood carver specializing in intricate Filipino designs. Each piece reflects the stories and traditions of Philippine culture.",
+      "image": "/images/profile/Rodrigo_Santos.jpg",
+      "location": "Quezon Province",
+      "specialty": "Wood Carving",
+      "productCount": 2
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "artisanId": 1,
+      "name": "Woven Abaca Basket",
+      "price": 2500,
+      "image": "/images/shop/abaca_basket.jpg?height=300&width=300",
+      "description": "Handwoven abaca basket made using traditional techniques from Cagayan.",
+      "category": "Textiles"
+    },
+    {
+      "id": 2,
+      "artisanId": 1,
+      "name": "Abaca Wall Hanging",
+      "price": 3000,
+      "image": "/images/shop/abaca_wall_hanging.jpg?height=300&width=300",
+      "description": "Beautiful wall hanging featuring intricate abaca weaving patterns.",
+      "category": "Textiles"
+    },
+    {
+      "id": 3,
+      "artisanId": 2,
+      "name": "Ceramic Dinner Bowl",
+      "price": 1800,
+      "image": "/images/shop/bowls.jpg?height=300&width=300",
+      "description": "Hand-thrown ceramic bowl perfect for any dining table.",
+      "category": "Pottery"
+    },
+    {
+      "id": 4,
+      "artisanId": 2,
+      "name": "Pottery Vase Set",
+      "price": 4500,
+      "image": "/images/shop/vase_set.jpg?height=300&width=300",
+      "description": "Set of 3 handcrafted ceramic vases with unique glazing.",
+      "category": "Pottery"
+    },
+    {
+      "id": 5,
+      "artisanId": 3,
+      "name": "Wooden Carved Figure",
+      "price": 5000,
+      "image": "/images/shop/wooden_carved.jpg?height=300&width=300",
+      "description": "Intricate wooden carving showcasing traditional Filipino artistry.",
+      "category": "Wood Carving"
+    },
+    {
+      "id": 6,
+      "artisanId": 3,
+      "name": "Wood Art Panel",
+      "price": 3500,
+      "image": "/images/shop/wall_art.jpg?height=300&width=300",
+      "description": "Decorative wood panel with hand-carved traditional patterns.",
+      "category": "Wood Carving"
+    }
+  ]
+}
