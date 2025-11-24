@@ -119,24 +119,23 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-muted/10 to-transparent pointer-events-none" />
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="inline-block mb-6 px-4 py-2 bg-muted rounded-full text-sm font-medium text-secondary">
+          <div className="inline-block mb-6 px-3 py-1.5 bg-muted rounded-full text-xs sm:text-sm font-medium text-secondary">
             Empowering Filipino Artisans
           </div>
 
-          <h1 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight text-balance">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 leading-tight text-balance">
             Made with Hands, <span className="text-primary">Priced with Heart.</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-muted-foreground mb-8 leading-relaxed text-balance max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed text-balance max-w-2xl mx-auto">
             UBRA connects and empowers Filipino artisans through a community-driven online marketplace. Support local
             talent. Celebrate handmade craftsmanship.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Link href="/shop">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-secondary text-primary-foreground text-base h-12 transition-all hover:shadow-lg hover:scale-105"
+                className="bg-primary hover:bg-secondary text-primary-foreground text-sm sm:text-base h-10 sm:h-12 transition-all hover:shadow-lg hover:scale-105"
               >
                 Shop Now
               </Button>
@@ -152,16 +151,16 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-card">
+      <section id="features" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-card">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">What You'll Find on UBRA</h2>
-            <p className="text-lg text-muted-foreground">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">What You'll Find on UBRA</h2>
+            <p className="text-base sm:text-lg text-muted-foreground">
               Everything you need to discover, support, and celebrate artisan craftsmanship
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
             {features.map((feature, idx) => {
               const Icon = feature.icon
               return (
@@ -170,8 +169,8 @@ export default function LandingPage() {
                     <div className="w-12 h-12 bg-muted rounded-lg flex items-center justify-center mb-4">
                       <Icon size={24} className="text-secondary" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                    <h3 className="font-semibold text-base sm:text-lg mb-2">{feature.title}</h3>
+                    <p className="text-sm sm:text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                   </Card>
                 </Link>
               )
@@ -181,23 +180,23 @@ export default function LandingPage() {
       </section>
 
       {/* Business Model Section */}
-      <section id="business" className="py-20 px-4 sm:px-6 lg:px-8 texture-woven">
+      <section id="business" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 texture-woven">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Sustainable by Design</h2>
-            <p className="text-lg text-muted-foreground">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Sustainable by Design</h2>
+            <p className="text-base sm:text-lg text-muted-foreground">
               Multiple revenue models ensure artisans thrive and the platform grows responsibly
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {models.map((model, idx) => (
               <div key={idx} className="p-8 bg-card rounded-xl border border-muted hover:border-primary transition-all">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Zap size={24} className="text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{model.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{model.description}</p>
+                <h3 className="text-lg sm:text-xl font-semibold mb-3">{model.title}</h3>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{model.description}</p>
               </div>
             ))}
           </div>
@@ -205,17 +204,17 @@ export default function LandingPage() {
       </section>
 
       {/* Team Section */}
-      <section id="team" className="py-20 px-4 sm:px-6 lg:px-8 bg-card">
+      <section id="team" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-card">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Meet Our Team</h2>
-            <p className="text-lg text-muted-foreground">Passionate builders dedicated to empowering artisans</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Meet Our Team</h2>
+            <p className="text-base sm:text-lg text-muted-foreground">Passionate builders dedicated to empowering artisans</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {team.map((member, idx) => (
               <div key={idx} className="text-center">
-                <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden shadow-lg border-4 border-primary/20">
+                <div className="w-20 h-20 sm:w-32 sm:h-32 mx-auto mb-4 rounded-full overflow-hidden shadow-lg border-4 border-primary/20">
                   <Image
                     src={member.image || "/placeholder.svg"}
                     alt={member.name}
@@ -224,7 +223,7 @@ export default function LandingPage() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h3 className="font-semibold text-lg mb-1">{member.name}</h3>
+                <h3 className="font-semibold text-base sm:text-lg mb-1">{member.name}</h3>
                 <p className="text-sm text-muted-foreground">{member.role}</p>
               </div>
             ))}
@@ -233,10 +232,10 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-t from-[#dcccae] via-[#e4d4b8] py-20 text-center text-[#5c3a21]">
+      <section className="bg-gradient-to-t from-[#dcccae] via-[#e4d4b8] py-16 sm:py-20 text-center text-[#5c3a21]">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-secondary">Ready to Support Artisans?</h2>
-          <p className="text-lg text-secondary/90 mb-8 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-secondary">Ready to Support Artisans?</h2>
+          <p className="text-base sm:text-lg text-secondary/90 mb-6 sm:mb-8 max-w-2xl mx-auto">
             Join the movement to celebrate and empower Filipino artisans. Your support makes a difference.
           </p>
           <Link href="/shop">

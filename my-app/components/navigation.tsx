@@ -1,19 +1,25 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, ShoppingBag } from "lucide-react"
+import { Menu, X, ShoppingBag, Heart } from "lucide-react"
 import { useApp } from "@/lib/context"
 import { usePathname } from "next/navigation"
 
 export function Navigation() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { cart } = useApp()
+  const { cart, favorites } = useApp()
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0)
+  const favoritesCount = favorites?.length ?? 0
 
-  // ❗ Hide entire nav on Home page because home uses its own nav
+  // Close mobile menu whenever the route changes
+  useEffect(() => {
+    setMobileMenuOpen(false)
+  }, [pathname])
+
+  // Hide entire nav on Home page because home uses its own nav
   if (pathname === "/") {
     return null
   }
@@ -44,10 +50,24 @@ export function Navigation() {
             <Link href="/auction" className="hover:text-primary transition">
               Auction
             </Link>
+            <Link href="/donation" className="hover:text-primary transition">
+              Donation
+            </Link>
           </div>
 
           {/* Cart */}
           <div className="flex items-center gap-4">
+            {/* Favorites */}
+            <Link href="/favorites" className="relative">
+              <Heart className="w-6 h-6" />
+              {favoritesCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {favoritesCount}
+                </span>
+              )}
+            </Link>
+
+            {/* Cart */}
             <Link href="/cart" className="relative">
               <ShoppingBag className="w-6 h-6" />
 
@@ -68,20 +88,23 @@ export function Navigation() {
         {/* Mobile menu */}
         {mobileMenuOpen && (
           <div className="md:hidden pb-4 border-t border-muted pt-4 space-y-3">
-            <Link href="/" className="block hover:text-primary transition">
+            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="block hover:text-primary transition">
               Home
             </Link>
-            <Link href="/feed" className="block hover:text-primary transition">
+            <Link href="/feed" onClick={() => setMobileMenuOpen(false)} className="block hover:text-primary transition">
               Feed
             </Link>
-            <Link href="/shop" className="block hover:text-primary transition">
+            <Link href="/shop" onClick={() => setMobileMenuOpen(false)} className="block hover:text-primary transition">
               Shop
             </Link>
-            <Link href="/museum" className="block hover:text-primary transition">
+            <Link href="/museum" onClick={() => setMobileMenuOpen(false)} className="block hover:text-primary transition">
               Museum
             </Link>
-            <Link href="/auction" className="block hover:text-primary transition">
+            <Link href="/auction" onClick={() => setMobileMenuOpen(false)} className="block hover:text-primary transition">
               Auction
+            </Link>
+            <Link href="/donation" onClick={() => setMobileMenuOpen(false)} className="block hover:text-primary transition">
+              Donation
             </Link>
           </div>
         )}

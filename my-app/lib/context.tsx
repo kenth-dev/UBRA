@@ -34,11 +34,14 @@ interface AppContextType {
   cart: CartItem[]
   addToCart: (product: any) => void
   removeFromCart: (productId: number) => void
+  updateCartQuantity: (productId: number, quantity: number) => void
   clearCart: () => void
   getCartTotal: () => number
   posts: Post[]
   likePost: (postId: number) => void
   addComment: (postId: number, name: string, text: string) => void
+  favorites: number[]
+  toggleFavorite: (productId: number) => void
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined)
@@ -46,6 +49,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined)
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([])
   const [posts, setPosts] = useState<Post[]>([])
+  const [favorites, setFavorites] = useState<number[]>([])
 
   const addToCart = useCallback((product: any) => {
     setCart((prev) => {
@@ -59,9 +63,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
           id: product.id,
           name: product.name,
           price: product.price,
-          image: product.image,
           quantity: 1,
           artisanId: product.artisanId,
+          image: product.image || "/placeholder.svg",
         },
       ]
     })
@@ -69,6 +73,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   const removeFromCart = useCallback((productId: number) => {
     setCart((prev) => prev.filter((item) => item.id !== productId))
+  }, [])
+
+  const updateCartQuantity = useCallback((productId: number, quantity: number) => {
+    setCart((prev) => prev.map((item) => (item.id === productId ? { ...item, quantity } : item)))
   }, [])
 
   const clearCart = useCallback(() => {
@@ -104,17 +112,24 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     )
   }, [])
 
+  const toggleFavorite = useCallback((productId: number) => {
+    setFavorites((prev) => (prev.includes(productId) ? prev.filter((id) => id !== productId) : [...prev, productId]))
+  }, [])
+
   return (
     <AppContext.Provider
       value={{
         cart,
         addToCart,
         removeFromCart,
+        updateCartQuantity,
         clearCart,
         getCartTotal,
         posts,
         likePost,
         addComment,
+        favorites,
+        toggleFavorite,
       }}
     >
       {children}

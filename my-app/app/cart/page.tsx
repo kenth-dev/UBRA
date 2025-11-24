@@ -9,7 +9,7 @@ import { Trash2 } from "lucide-react"
 import { useState } from "react"
 
 export default function CartPage() {
-  const { cart, removeFromCart, getCartTotal, clearCart } = useApp()
+  const { cart, removeFromCart, getCartTotal, clearCart, updateCartQuantity } = useApp()
   const [proceedToCheckout, setProceedToCheckout] = useState(false)
 
   if (proceedToCheckout) {
@@ -58,23 +58,55 @@ export default function CartPage() {
             <div className="lg:col-span-2">
               <div className="space-y-4">
                 {cart.map((item) => (
-                  <Card key={item.id} className="p-4 flex gap-4 items-start">
-                    <div className="w-20 h-20 bg-muted rounded flex-shrink-0 relative overflow-hidden">
-                      <Image src={item.image || "/placeholder.svg"} alt={item.name} fill className="object-cover" />
-                    </div>
+                  <Card key={item.id} className="p-4">
+                    <div className="flex items-center gap-4">
+                      {/* Image */}
+                      <div className="w-28 h-28 flex-shrink-0 overflow-hidden rounded">
+                        <Image
+                          src={item.image || "/placeholder.svg"}
+                          alt={item.name}
+                          width={112}
+                          height={112}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
 
-                    <div className="flex-1">
-                      <h3 className="font-semibold mb-1">{item.name}</h3>
-                      <p className="text-sm text-muted-foreground mb-2">Qty: {item.quantity}</p>
-                      <p className="font-bold text-primary">₱{item.price} each</p>
-                    </div>
+                      {/* Details */}
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-lg">{item.name}</h3>
+                        <p className="text-sm text-muted-foreground mt-1">Style # {item.id}</p>
+                        <p className="text-sm text-muted-foreground">Seller: Artisan {item.artisanId}</p>
+                        <div className="mt-3 flex items-center gap-4">
+                          <p className="font-semibold text-[#8B6F47]">₱{item.price}</p>
+                          <div className="flex items-center gap-2">
+                            <label className="text-sm text-muted-foreground">Qty</label>
+                            <select
+                              value={item.quantity}
+                              onChange={(e) => updateCartQuantity(item.id, Number(e.target.value))}
+                              className="px-3 py-1 border rounded text-sm"
+                            >
+                              {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                                <option key={n} value={n}>
+                                  {n}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
 
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="text-destructive hover:text-destructive/80 transition"
-                    >
-                      <Trash2 className="w-5 h-5" />
-                    </button>
+                      {/* Price & Actions */}
+                      <div className="w-40 text-right">
+                        <p className="text-sm text-muted-foreground">Item Price</p>
+                        <p className="font-semibold text-lg">₱{item.price * item.quantity}</p>
+                        <button
+                          onClick={() => removeFromCart(item.id)}
+                          className="mt-3 text-sm text-destructive hover:underline"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
                   </Card>
                 ))}
               </div>
@@ -101,16 +133,12 @@ export default function CartPage() {
                     <span>Subtotal</span>
                     <span>₱{getCartTotal()}</span>
                   </div>
-                  <div className="flex justify-between mb-2">
-                    <span>Community Donation (5%)</span>
-                    <span>₱{Math.round(getCartTotal() * 0.05)}</span>
-                  </div>
                 </div>
 
                 <div className="bg-muted p-4 rounded-lg mb-6">
                   <div className="flex justify-between">
                     <span className="font-bold">Total</span>
-                    <span className="text-2xl font-bold text-primary">₱{Math.round(getCartTotal() * 1.05)}</span>
+                    <span className="text-2xl font-bold text-primary">₱{getCartTotal()}</span>
                   </div>
                 </div>
 

@@ -53,6 +53,66 @@
       "image": "/images/shop/wall_art.jpg",
       "description": "Decorative wood panel with hand-carved traditional patterns.",
       "category": "Wood Carving"
+    },
+     {
+      "id": 7,
+      "artisanId": 1,
+      "name": "Abaca Tote Bag",
+      "price": 2200,
+      "image": "/placeholder.svg?height=300&width=300",
+      "description": "Eco-friendly abaca fiber tote bag perfect for shopping or travel.",
+      "category": "Textiles",
+      "rating": 4.7,
+      "reviews": 124,
+      "discount": 0
+    },
+    {
+      "id": 8,
+      "artisanId": 2,
+      "name": "Hand-Painted Ceramic Plate",
+      "price": 1500,
+      "image": "/placeholder.svg?height=300&width=300",
+      "description": "Beautiful ceramic plate with intricate hand-painted traditional motifs.",
+      "category": "Pottery",
+      "rating": 4.8,
+      "reviews": 167,
+      "discount": 25
+    },
+    {
+      "id": 9,
+      "artisanId": 3,
+      "name": "Wooden Decorative Bowl",
+      "price": 2800,
+      "image": "/placeholder.svg?height=300&width=300",
+      "description": "Hand-turned wooden bowl with natural finish and intricate grain patterns.",
+      "category": "Wood Carving",
+      "rating": 4.6,
+      "reviews": 95,
+      "discount": 0
+    },
+    {
+      "id": 10,
+      "artisanId": 1,
+      "name": "Abaca Coaster Set",
+      "price": 800,
+      "image": "/placeholder.svg?height=300&width=300",
+      "description": "Set of 4 woven abaca coasters with cork backing.",
+      "category": "Textiles",
+      "rating": 4.4,
+      "reviews": 201,
+      "discount": 12
+    },
+    {
+      "id": 11,
+      "artisanId": 2,
+      "name": "Ceramic Tea Set",
+      "price": 3200,
+      "image": "/placeholder.svg?height=300&width=300",
+      "description": "Traditional ceramic tea set with hand-glazed patterns and teapot.",
+      "category": "Pottery",
+      "rating": 4.9,
+      "reviews": 138,
+      "discount": 0
     }
   ]
 }
