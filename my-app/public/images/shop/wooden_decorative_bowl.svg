@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="g3" x1="0" x2="1">
+      <stop offset="0%" stop-color="#efe6db" />
+      <stop offset="100%" stop-color="#ead6bf" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g3)" />
+  <g fill="#6b4f27" font-family="Inter, Arial, sans-serif" text-anchor="middle">
+    <ellipse cx="300" cy="300" rx="180" ry="70" fill="#fff" stroke="#c9a77a" stroke-width="6" />
+    <ellipse cx="300" cy="310" rx="140" ry="40" fill="#f7efe5" />
+    <text x="300" y="420" font-size="26" font-weight="700">Wooden Decorative Bowl</text>
+    <text x="300" y="452" font-size="14" fill="#8B6F47">Hand-turned, natural finish</text>
+  </g>
+</svg>

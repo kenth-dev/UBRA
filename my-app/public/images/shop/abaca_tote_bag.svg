@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0%" stop-color="#e9dccf" />
+      <stop offset="100%" stop-color="#d4b896" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g1)" />
+  <g fill="#8B6F47" font-family="Inter, Arial, sans-serif" text-anchor="middle">
+    <rect x="105" y="160" width="390" height="280" rx="24" fill="#fff" opacity="0.85" />
+    <path d="M200 220h200v20c0 22-18 40-40 40H240c-22 0-40-18-40-40v-20z" fill="#e8d8c7" />
+    <text x="300" y="420" font-size="28" font-weight="700">Abaca Tote Bag</text>
+    <text x="300" y="452" font-size="16" fill="#6b4f27">Eco-friendly handmade</text>
+  </g>
+</svg>
