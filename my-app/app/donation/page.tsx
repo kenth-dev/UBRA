@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card"
 import Link from "next/link"
 import { Users, TrendingUp, ArrowUpRight, ArrowDownLeft, Target, Gift } from "lucide-react"
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
+import { donations } from "@/lib/donations"
 
 export default function DonationPage() {
   // Weekly donation data for chart
@@ -25,14 +26,14 @@ export default function DonationPage() {
     { name: "Disaster Response", value: 25, color: "#d4b896", amount: "₱175,000" },
   ]
 
-  // Recent donations/distributions
+  // Recent donations/distributions (dates updated to 2025; amounts are 6-digit pesos)
   const recentDonations = [
     {
       type: "distribution",
       title: "Weaving Skills Workshop",
       category: "Training Programs",
-      amount: "₱45,000",
-      date: "Dec 15, 2024",
+      amount: "₱145,000",
+      date: "Dec 15, 2025",
       status: "Delivered",
       artisans: "25 artisans",
     },
@@ -40,8 +41,8 @@ export default function DonationPage() {
       type: "distribution",
       title: "Emergency Relief - Flood Victims",
       category: "Disaster Response",
-      amount: "₱50,000",
-      date: "Dec 10, 2024",
+      amount: "₱150,000",
+      date: "Dec 10, 2025",
       status: "Delivered",
       families: "100 families",
     },
@@ -49,8 +50,8 @@ export default function DonationPage() {
       type: "distribution",
       title: "Equipment Support - Pottery Studio",
       category: "Artisan Aid",
-      amount: "₱30,000",
-      date: "Dec 5, 2024",
+      amount: "₱130,000",
+      date: "Dec 5, 2025",
       status: "Delivered",
       artisans: "8 artisans",
     },
@@ -58,8 +59,8 @@ export default function DonationPage() {
       type: "collection",
       title: "Weekly Purchases",
       category: "Platform Revenue",
-      amount: "₱72,500",
-      date: "Dec 18, 2024",
+      amount: "₱172,500",
+      date: "Dec 18, 2025",
       status: "Collected",
       transactions: "1,450 sales",
     },
@@ -72,6 +73,8 @@ export default function DonationPage() {
     { icon: TrendingUp, label: "Lives Impacted", value: "1,200+", change: "+45%" },
     { icon: Target, label: "Programs Active", value: "12", change: "+3" },
   ]
+
+  const percent = Math.round((donations.totalCollected / donations.goal) * 100)
 
   return (
     <div className="min-h-screen bg-background pt-20">
@@ -93,16 +96,16 @@ export default function DonationPage() {
             <div className="flex justify-between items-start mb-6">
               <div>
                 <p className="text-muted-foreground text-sm font-medium mb-2">Total Donations Collected</p>
-                <h2 className="text-2xl sm:text-3xl font-bold text-foreground">₱700,000</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-foreground">₱{donations.totalCollected.toLocaleString()}</h2>
                 <p className="text-xs sm:text-sm text-green-600 mt-2 flex items-center gap-1">
                   <TrendingUp className="w-4 h-4" />
                   +12.5% from last month
                 </p>
               </div>
-              <div className="text-right">
-                <p className="text-sm text-muted-foreground">Monthly Goal</p>
-                <p className="text-xl sm:text-2xl font-bold text-secondary">₱500K</p>
-                <p className="text-xs sm:text-xs text-muted-foreground mt-1">140% achieved</p>
+                <div className="text-right">
+                <p className="text-sm text-muted-foreground">Goal</p>
+                <p className="text-xl sm:text-2xl font-bold text-secondary">₱{donations.goal.toLocaleString()}</p>
+                <p className="text-xs sm:text-xs text-muted-foreground mt-1">{percent}% achieved</p>
               </div>
             </div>
 
@@ -127,7 +130,7 @@ export default function DonationPage() {
           <Card className="p-4 sm:p-8">
             <h3 className="font-semibold mb-6 flex items-center gap-2">
               <Target className="w-5 h-5 text-primary" />
-              2024 Goal
+              2025 Goal
             </h3>
             <div className="text-center mb-6">
               <div className="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-4">
@@ -140,18 +143,18 @@ export default function DonationPage() {
                     fill="none"
                     stroke="#c8a97e"
                     strokeWidth="6"
-                    strokeDasharray={`${45 * 2 * Math.PI * 0.7} ${45 * 2 * Math.PI}`}
+                    strokeDasharray={`${45 * 2 * Math.PI * (percent / 100)} ${45 * 2 * Math.PI}`}
                     strokeLinecap="round"
                     style={{ transform: "rotate(-90deg)", transformOrigin: "50% 50%" }}
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <p className="text-xl sm:text-2xl font-bold">70%</p>
+                  <p className="text-xl sm:text-2xl font-bold">{percent}%</p>
                   <p className="text-xs text-muted-foreground">Progress</p>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground mb-1">₱7M of ₱10M</p>
-              <p className="text-xs font-medium">₱3M left to reach goal</p>
+              <p className="text-sm text-muted-foreground mb-1">₱{donations.totalCollected.toLocaleString()} of ₱{donations.goal.toLocaleString()}</p>
+              <p className="text-xs font-medium">₱{(donations.goal - donations.totalCollected).toLocaleString()} left to reach goal</p>
             </div>
           </Card>
         </div>

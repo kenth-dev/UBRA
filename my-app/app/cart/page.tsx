@@ -58,53 +58,54 @@ export default function CartPage() {
             <div className="lg:col-span-2">
               <div className="space-y-4">
                 {cart.map((item) => (
-                  <Card key={item.id} className="p-4">
-                    <div className="flex items-center gap-4">
-                      {/* Image */}
-                      <div className="w-28 h-28 flex-shrink-0 overflow-hidden rounded">
-                        <Image
-                          src={item.image || "/placeholder.svg"}
-                          alt={item.name}
-                          width={112}
-                          height={112}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-
-                      {/* Details */}
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-lg">{item.name}</h3>
-                        <p className="text-sm text-muted-foreground mt-1">Style # {item.id}</p>
-                        <p className="text-sm text-muted-foreground">Seller: Artisan {item.artisanId}</p>
-                        <div className="mt-3 flex items-center gap-4">
-                          <p className="font-semibold text-[#8B6F47]">₱{item.price}</p>
-                          <div className="flex items-center gap-2">
-                            <label className="text-sm text-muted-foreground">Qty</label>
-                            <select
-                              value={item.quantity}
-                              onChange={(e) => updateCartQuantity(item.id, Number(e.target.value))}
-                              className="px-3 py-1 border rounded text-sm"
-                            >
-                              {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
-                                <option key={n} value={n}>
-                                  {n}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
+                  <Card key={item.id} className="p-3">
+                    <div className="flex items-center gap-3">
+                      {/* Thumbnail */}
+                      <div className="flex-shrink-0">
+                        <div className="w-16 h-16 md:w-28 md:h-28 rounded overflow-hidden">
+                          <Image src={item.image || "/placeholder.svg"} alt={item.name} width={160} height={160} className="w-full h-full object-cover" />
                         </div>
                       </div>
 
-                      {/* Price & Actions */}
-                      <div className="w-40 text-right">
-                        <p className="text-sm text-muted-foreground">Item Price</p>
-                        <p className="font-semibold text-lg">₱{item.price * item.quantity}</p>
-                        <button
-                          onClick={() => removeFromCart(item.id)}
-                          className="mt-3 text-sm text-destructive hover:underline"
-                        >
-                          Remove
-                        </button>
+                      {/* Main info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <h3 className="font-semibold text-sm md:text-lg truncate">{item.name}</h3>
+                            <div className="text-xs text-muted-foreground mt-1 md:mt-2">
+                              <span>Style # {item.id}</span>
+                              <span className="mx-2">•</span>
+                              <span>Seller: Artisan {item.artisanId}</span>
+                            </div>
+                          </div>
+
+                          {/* Price on the right (mobile compact) */}
+                          <div className="text-right">
+                            <div className="text-sm font-semibold md:text-lg">₱{item.price * item.quantity}</div>
+                            <div className="md:hidden mt-1">
+                              <button onClick={() => removeFromCart(item.id)} className="p-2 rounded-full text-destructive hover:bg-muted">
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Qty and actions row */}
+                        <div className="mt-3 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <label className="text-sm">Qty</label>
+                            <select value={item.quantity} onChange={(e) => updateCartQuantity(item.id, Number(e.target.value))} className="px-2 py-1 border rounded text-sm">
+                              {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                                <option key={n} value={n}>{n}</option>
+                              ))}
+                            </select>
+                          </div>
+
+                          {/* Remove on md+ */}
+                          <div className="hidden md:block">
+                            <button onClick={() => removeFromCart(item.id)} className="text-sm text-destructive hover:underline">Remove</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </Card>
@@ -114,7 +115,7 @@ export default function CartPage() {
 
             {/* Cart Summary */}
             <div>
-              <Card className="p-6 sticky top-20">
+              <Card className="p-6 lg:sticky lg:top-20">
                 <h2 className="text-xl font-bold mb-4">Order Summary</h2>
 
                 <div className="mb-4 pb-4 border-b border-muted space-y-2">
