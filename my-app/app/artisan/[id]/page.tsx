@@ -68,33 +68,34 @@ export default function ArtisanPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="min-h-screen bg-background pt-16">
-      <div className="relative h-64 md:h-80 bg-gradient-to-br from-[#8B6F47] via-[#A8896F] to-[#D4C5B9] overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "url('/placeholder.svg')" }}></div>
+      <div className="relative h-56 sm:h-72 md:h-96 bg-gradient-to-br from-[#8B6F47] via-[#A8896F] to-[#D4C5B9] overflow-visible">
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "url('/placeholder.svg')" }}></div>
+        <div className="absolute inset-0 bg-black/20 mix-blend-multiply"></div>
 
         {/* Artisan Profile Card */}
-        <div className="max-w-6xl mx-auto px-4 relative -bottom-24 md:-bottom-20">
-          <div className="flex flex-col md:flex-row gap-6 items-end">
+        <div className="max-w-5xl mx-auto px-4 relative bottom-0 md:-bottom-20 z-20">
+          <div className="flex flex-col md:flex-row gap-6 items-center">
             <Image
               src={artisan.image || "/placeholder.svg"}
               alt={artisan.name}
               width={160}
               height={160}
-              className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-white shadow-lg flex-shrink-0"
+              className="w-24 h-24 sm:w-32 md:w-40 sm:h-32 md:h-40 rounded-full object-cover border-4 border-white shadow-lg flex-shrink-0"
             />
 
             <div className="flex-1 pb-4">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{artisan.name}</h1>
-                  <p className="text-lg text-white/90 mb-2">{artisan.role}</p>
-                  <div className="flex items-center gap-4 text-white/80 mb-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="min-w-0">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 truncate text-center sm:text-left drop-shadow-md">{artisan.name}</h1>
+                  <p className="text-sm sm:text-lg text-white/90 mb-2 truncate text-center sm:text-left">{artisan.role}</p>
+                  <div className="flex flex-wrap items-center gap-3 text-white/80 mb-2 text-xs sm:text-sm justify-center sm:justify-start">
                     <span className="flex items-center gap-1">📍 {artisan.location}</span>
                     <span className="flex items-center gap-1">⭐ {artisan.rating} rating</span>
                     <span className="flex items-center gap-1">{artisan.yearsExperience} years experience</span>
                   </div>
                 </div>
 
-                <div className="flex gap-3 flex-col sm:flex-row">
+                <div className="hidden md:flex gap-3 items-center">
                   <Button className="bg-white text-[#8B6F47] hover:bg-gray-100 font-semibold">
                     <Users size={18} className="mr-2" />
                     Follow
@@ -110,9 +111,9 @@ export default function ArtisanPage({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* Tabs */}
-        <div className="flex gap-8 border-b mb-8 overflow-x-auto">
+      <div className="max-w-5xl mx-auto px-4 py-6 pt-6 md:pt-12">
+        {/* Tabs (pulled closer to header) */}
+        <div className="flex gap-8 border-b mb-4 overflow-x-auto bg-background relative z-10 py-2 -mt-4 md:-mt-6">
           {[
             { id: "story", label: "Story" },
             { id: "portfolio", label: "Portfolio" },
@@ -131,6 +132,16 @@ export default function ArtisanPage({ params }: { params: { id: string } }) {
               {tab.label}
             </button>
           ))}
+        </div>
+
+        {/* Mobile action buttons (stacked) */}
+        <div className="md:hidden my-4 flex flex-col gap-3 px-1">
+          <Button className="w-full bg-white text-[#8B6F47] hover:bg-gray-100 font-semibold">
+            <Users size={16} className="mr-2" /> Follow
+          </Button>
+          <Button className="w-full bg-[#E8A76F] hover:bg-[#D88B5A] text-white font-semibold">
+            <Mail size={16} className="mr-2" /> Message
+          </Button>
         </div>
 
         {/* Story Tab */}
@@ -173,23 +184,23 @@ export default function ArtisanPage({ params }: { params: { id: string } }) {
 
             {/* Stats Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-gray-50 rounded-lg p-6 sticky top-24">
+              <div className="bg-gray-50 rounded-lg p-4 sticky top-24">
                 <h3 className="font-bold text-lg mb-6">Artisan Stats</h3>
                 <div className="space-y-6">
                   <div className="text-center">
-                    <p className="text-3xl font-bold text-[#8B6F47]">{artisan.yearsExperience}</p>
+                    <p className="text-2xl md:text-3xl font-bold text-[#8B6F47]">{artisan.yearsExperience}</p>
                     <p className="text-gray-600">Years Experience</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-3xl font-bold text-[#8B6F47]">{artisan.productCount}</p>
+                    <p className="text-2xl md:text-3xl font-bold text-[#8B6F47]">{artisan.productCount}</p>
                     <p className="text-gray-600">Products</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-3xl font-bold text-[#8B6F47]">{artisan.sales?.toLocaleString()}</p>
+                    <p className="text-2xl md:text-3xl font-bold text-[#8B6F47]">{artisan.sales?.toLocaleString()}</p>
                     <p className="text-gray-600">Sales</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-3xl font-bold text-yellow-500">{artisan.rating}</p>
+                    <p className="text-2xl md:text-3xl font-bold text-primary">{artisan.rating}</p>
                     <p className="text-gray-600">Rating</p>
                   </div>
                 </div>
@@ -216,36 +227,42 @@ export default function ArtisanPage({ params }: { params: { id: string } }) {
         {/* Products Tab */}
         {activeTab === "products" && (
           <div>
-            <h2 className="text-2xl font-bold mb-6">Featured Works</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h2 className="text-2xl font-bold mb-4">Featured Works</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {products.map((product) => (
-                <Card key={product.id} className="overflow-hidden hover:shadow-lg transition">
-                  <Link href={`/product/${product.id}`}>
-                    <div className="aspect-square relative overflow-hidden bg-muted">
+                <Link key={product.id} href={`/product/${product.id}`}>
+                  <Card className="overflow-hidden hover:shadow-md transition group cursor-pointer h-full">
+                    <div className="relative overflow-hidden bg-muted h-28 sm:aspect-square sm:h-auto">
                       <Image
                         src={product.image || "/placeholder.svg"}
                         alt={product.name}
-                        fill
-                        className="w-full h-full object-cover hover:scale-105 transition"
+                        fill={true}
+                        className="w-full h-full object-cover group-hover:scale-105 transition duration-200"
                       />
                     </div>
-                  </Link>
 
-                  <div className="p-4">
-                    <Link href={`/product/${product.id}`}>
-                      <h3 className="font-semibold text-lg mb-2 hover:text-[#8B6F47] transition">{product.name}</h3>
-                    </Link>
-                    <p className="text-sm text-muted-foreground mb-3">{product.description}</p>
+                    <div className="p-2 sm:p-3">
+                      <h3 className="font-semibold text-sm sm:text-base mb-1 hover:text-[#8B6F47] transition truncate">{product.name}</h3>
+                      <p className="text-xs text-gray-600 mb-2 line-clamp-2 hidden sm:block">{product.description}</p>
 
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-2xl font-bold text-[#8B6F47]">₱{product.price}</span>
+                      <div className="flex items-center justify-between mb-2">
+                        <div>
+                          <span className="text-lg sm:text-xl font-bold text-[#8B6F47]">₱{product.price}</span>
+                        </div>
+                      </div>
+
+                      <Button
+                        onClick={(e) => {
+                          e.preventDefault()
+                          addToCart(product)
+                        }}
+                        className="w-full bg-[#8B6F47] hover:bg-[#6B4F27] text-white py-1 text-sm rounded-md transition"
+                      >
+                        Add
+                      </Button>
                     </div>
-
-                    <Button className="w-full bg-[#8B6F47] hover:bg-[#6B4F27]" onClick={() => addToCart(product)}>
-                      Add to Cart
-                    </Button>
-                  </div>
-                </Card>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>
