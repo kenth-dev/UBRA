@@ -1,11 +1,10 @@
 "use client"
-
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { ShoppingBag, Users, Palette, Gavel, Heart, Zap } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Users, ShoppingBag, Palette, Gavel, Heart, Zap } from "lucide-react"
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -54,7 +53,7 @@ export default function LandingPage() {
   const models = [
     {
       title: "One-for-One Model",
-      description: "20% of auction sales donated, 10% for app sustainability, 70% to artisans",
+      description: "Auctions distribute 70% to artisans, 15% to community donations, and 15% to platform sustainability.",
     },
     {
       title: "Advertising Model",
@@ -62,7 +61,8 @@ export default function LandingPage() {
     },
     {
       title: "Commission-Based Model",
-      description: "10% commission on marketplace sales funds platform operations",
+      description:
+        "10% commission on marketplace sales funds platform operations — an additional 5% of each sale is donated to community programs.",
     },
   ]
 

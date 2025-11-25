@@ -6,9 +6,9 @@ import Link from "next/link"
 import { Users, TrendingUp, ArrowUpRight, ArrowDownLeft, Target, Gift } from "lucide-react"
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 import { donations } from "@/lib/donations"
+import { businessModel } from "@/lib/businessModel"
 
 export default function DonationPage() {
-  // Weekly donation data for chart
   const weeklyData = [
     { day: "S", value: 12000 },
     { day: "M", value: 15000 },
@@ -93,36 +93,22 @@ export default function DonationPage() {
         {/* Total Donations Summary */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
           <Card className="lg:col-span-2 p-4 sm:p-8 bg-gradient-to-br from-primary/10 to-secondary/10">
-            <div className="flex justify-between items-start mb-6">
-              <div>
-                <p className="text-muted-foreground text-sm font-medium mb-2">Total Donations Collected</p>
-                <h2 className="text-2xl sm:text-3xl font-bold text-foreground">₱{donations.totalCollected.toLocaleString()}</h2>
-                <p className="text-xs sm:text-sm text-green-600 mt-2 flex items-center gap-1">
-                  <TrendingUp className="w-4 h-4" />
-                  +12.5% from last month
-                </p>
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold mb-2">Total Donations Collected (Last 7 days)</h2>
+              <div className="h-40 sm:h-48">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={weeklyData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" />
+                    <XAxis dataKey="day" stroke="rgba(0,0,0,0.5)" />
+                    <YAxis stroke="rgba(0,0,0,0.5)" />
+                    <Tooltip
+                      contentStyle={{ backgroundColor: "#f5f1ec", border: "1px solid #c8a97e" }}
+                      formatter={(value) => `₱${value.toLocaleString()}`}
+                    />
+                    <Bar dataKey="value" fill="#c8a97e" radius={[8, 8, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
-                <div className="text-right">
-                <p className="text-sm text-muted-foreground">Goal</p>
-                <p className="text-xl sm:text-2xl font-bold text-secondary">₱{donations.goal.toLocaleString()}</p>
-                <p className="text-xs sm:text-xs text-muted-foreground mt-1">{percent}% achieved</p>
-              </div>
-            </div>
-
-            {/* Weekly Chart */}
-            <div className="h-40 sm:h-48">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={weeklyData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" />
-                  <XAxis dataKey="day" stroke="rgba(0,0,0,0.5)" />
-                  <YAxis stroke="rgba(0,0,0,0.5)" />
-                  <Tooltip
-                    contentStyle={{ backgroundColor: "#f5f1ec", border: "1px solid #c8a97e" }}
-                    formatter={(value) => `₱${value.toLocaleString()}`}
-                  />
-                  <Bar dataKey="value" fill="#c8a97e" radius={[8, 8, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
             </div>
           </Card>
 
@@ -316,7 +302,11 @@ export default function DonationPage() {
             <div className="space-y-4">
               {[
                 { num: "1", title: "You Shop", desc: "Every product purchased from UBRA" },
-                { num: "2", title: "We Calculate", desc: "20% of auction sales goes to community fund" },
+                {
+                  num: "2",
+                  title: "We Calculate",
+                  desc: `Auctions: ${businessModel.auction.artisanPercent}% to artisans, ${businessModel.auction.donationPercent}% to community donations, ${businessModel.auction.platformPercent}% to platform. Marketplace: ${businessModel.marketplace.donationPercent}% of each sale is donated (platform commission ${businessModel.marketplace.commissionPercent}%).`,
+                },
                 { num: "3", title: "We Allocate", desc: "Funds distributed to three main categories" },
                 { num: "4", title: "Impact Grows", desc: "Artisans thrive, communities flourish" },
               ].map((step, idx) => (
