@@ -14,68 +14,7 @@ interface Props {
   onPlaceBid: (item: AuctionItem) => void
 }
 
-const liveAuctions: AuctionItem[] = [
-  {
-    id: "1",
-    title: "Capiz Shell Wind Chime",
-    artisan: "Elena Magsaysay",
-    artisanImage: "/filipino-artisan-woman-portrait.jpg",
-    image: "/beautiful-capiz-shell-wind-chime-handcrafted-iride.jpg",
-    currentBid: 3500,
-    startingBid: 2000,
-    bids: 12,
-    timeLeft: { days: 1, hours: 20, minutes: 45, seconds: 30 },
-    isLimited: true,
-    edition: "3 of 10",
-    description: "Handcrafted Capiz shell wind chime from Aklan province.",
-    category: "Home Decor",
-  },
-  {
-    id: "2",
-    title: "Hand-carved Ifugao Bulul",
-    artisan: "Pedro Maclang",
-    artisanImage: "/elderly-filipino-man-carver-portrait.jpg",
-    image: "/wooden-ifugao-bulul-rice-god-carved-sculpture-trad.jpg",
-    currentBid: 15800,
-    startingBid: 10000,
-    bids: 8,
-    timeLeft: { days: 0, hours: 8, minutes: 22, seconds: 10 },
-    isLimited: true,
-    edition: "1 of 5",
-    description: "Traditional Ifugao rice god carved from narra wood.",
-    category: "Sculptures",
-  },
-  {
-    id: "3",
-    title: "Binakol Woven Blanket",
-    artisan: "Rosa Villanueva",
-    artisanImage: "/filipino-weaver-woman-portrait.jpg",
-    image: "/binakol-woven-blanket-geometric-pattern-traditiona.jpg",
-    currentBid: 8200,
-    startingBid: 5000,
-    bids: 15,
-    timeLeft: { days: 2, hours: 14, minutes: 55, seconds: 45 },
-    isLimited: true,
-    edition: "2 of 8",
-    description: "Traditional Binakol blanket with optical illusion patterns.",
-    category: "Textiles",
-  },
-  {
-    id: "4",
-    title: "Burnay Pottery Set",
-    artisan: "Juan dela Cruz",
-    artisanImage: "/filipino-potter-man-portrait.jpg",
-    image: "/burnay-pottery-traditional-ilocos-clay-jars-terrac.jpg",
-    currentBid: 4500,
-    startingBid: 3000,
-    bids: 6,
-    timeLeft: { days: 0, hours: 3, minutes: 12, seconds: 8 },
-    isLimited: true,
-    edition: "5 of 12",
-    description: "Traditional Ilocano clay pottery set for fermenting.",
-    category: "Pottery",
-  },
-]
+import { liveAuctions } from "@/components/auction-data"
 
 function AuctionCard({ item, onPlaceBid }: { item: AuctionItem; onPlaceBid: (item: AuctionItem) => void }) {
   const [timeLeft, setTimeLeft] = useState(item.timeLeft)

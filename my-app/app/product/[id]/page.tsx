@@ -172,8 +172,12 @@ export default function ProductPage({ params }: { params: { id: string } }) {
             {/* Price */}
             <div className="flex items-center gap-3 mb-4">
               <span className="text-2xl sm:text-4xl font-bold text-[#8B6F47]">₱{product.price}</span>
-              <span className="text-base sm:text-lg text-gray-500 line-through">₱{originalPrice}</span>
-              <span className="text-sm text-red-600 font-semibold">Save ₱{originalPrice - product.price}</span>
+              {product.discount && product.discount > 0 ? (
+                <>
+                  <span className="text-base sm:text-lg text-gray-500 line-through">₱{originalPrice}</span>
+                  <span className="text-sm text-red-600 font-semibold">Save ₱{originalPrice - product.price}</span>
+                </>
+              ) : null}
             </div>
 
             {/* Description */}

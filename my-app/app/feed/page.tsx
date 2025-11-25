@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Heart, MessageCircle, Send, Plus, Video, Image as ImageIcon, Smile, TrendingUp, Calendar, ShoppingCart, Gift, Star } from "lucide-react"
 import Image from "next/image"
+import { liveAuctions, featuredItem } from "@/components/auction-data"
 import { donations as donationTotals } from "@/lib/donations"
 
 interface Post {
@@ -17,6 +18,7 @@ interface Post {
   likes: number
   comments: any[]
   liked?: boolean
+  timestamp?: string
 }
 
 export default function FeedPage() {
@@ -32,7 +34,17 @@ export default function FeedPage() {
   useEffect(() => {
     fetch("/data/posts.json")
       .then((res) => res.json())
-      .then((data) => setPosts(data.posts.map((p: any) => ({ ...p, liked: false }))))
+      .then((data) => {
+        const fetched = (data.posts || []).map((p: any) => ({
+          ...p,
+          liked: false,
+          timestamp: p.timestamp || "2h",
+          comments: p.comments && p.comments.length ? p.comments : [{ id: 1, name: "Community", text: "Beautiful craftsmanship!", timestamp: "1h" }],
+        }))
+
+        // load posts directly from the JSON file (includes seeded auction posts)
+        setPosts(fetched)
+      })
   }, [])
 
   const [shopProducts, setShopProducts] = useState<any[]>([])
@@ -117,15 +129,15 @@ export default function FeedPage() {
 
   return (
     <div className="min-h-screen bg-background pt-20">
-      <div className="max-w-6xl mx-auto px-3 sm:px-4 py-6">
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left sidebar */}
           <aside className="hidden lg:block lg:col-span-3">
             <Card className="p-3 sticky top-24 space-y-3">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-800">
-                  <Image src={posts[0]?.artisanAvatar || "/placeholder.svg"} alt="profile" width={48} height={48} className="object-cover" />
-                </div>
+                <div className="w-12 h-12 rounded-full overflow-hidden bg-white">
+                    <Image src="/ubra.png" alt="UBRA Marketplace" width={48} height={48} className="object-cover" />
+                  </div>
                 <div>
                   <div className="font-semibold">UBRA Marketplace</div>
                   <div className="text-xs text-muted-foreground">Handmade • Local • Sustainable</div>
@@ -160,11 +172,11 @@ export default function FeedPage() {
               <div className="pt-2 border-t border-muted">
                 <div className="text-xs text-muted-foreground mb-2">Featured</div>
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded overflow-hidden bg-gray-800">
-                    <Image src={posts[1]?.image || "/images/shop/abaca_tote_bag.svg"} alt="featured" width={48} height={48} className="object-cover" />
+                  <div className="w-12 h-12 rounded overflow-hidden bg-white relative">
+                      <Image src={"/images/shop/abaca_tote_bag.jpeg"} alt="featured" fill className="object-cover" />
                   </div>
                   <div>
-                    <div className="text-sm">Abaca Tote</div>
+                    <div className="text-sm">Abaca Tote Bag</div>
                     <div className="text-xs text-muted-foreground">₱1,200</div>
                   </div>
                 </div>
@@ -238,9 +250,10 @@ export default function FeedPage() {
                         artisanAvatar: "/placeholder.svg",
                         image: "/placeholder.svg",
                         caption: text,
-                        likes: 0,
+                          likes: 0,
+                          timestamp: "just now",
                         liked: false,
-                        comments: [],
+                          comments: [{ id: 1, name: name || "You", text: "Nice!", timestamp: "just now" }],
                       }
                       setPosts((prev) => [newPost, ...(prev || [])])
                       setComposerName("")
@@ -265,42 +278,105 @@ export default function FeedPage() {
           <Plus className="w-5 h-5" />
         </button>
 
-        {/* Stories / Quick avatars */}
+        {/* Stories / Quick avatars (artisans currently in auctions) */}
         <div className="mb-4 flex gap-3 overflow-x-auto py-2">
-          {posts.slice(0, 8).map((p) => (
-            <div key={p.id} className="flex-shrink-0 text-center w-20">
-              <div className="w-14 h-14 mx-auto rounded-full overflow-hidden ring-2 ring-[#c8a97e] bg-gray-800">
-                <Image src={p.artisanAvatar || "/placeholder.svg"} alt={p.artisanName} width={56} height={56} className="object-cover" />
+          {(
+            [featuredItem, ...liveAuctions]
+              .reduce((acc: { id: string; name: string; avatar: string }[], item) => {
+                const exists = acc.find((a) => a.name === item.artisan)
+                if (!exists) acc.push({ id: `auction-${item.id}`, name: item.artisan, avatar: item.artisanImage || "/placeholder.svg" })
+                return acc
+              }, [])
+              .slice(0, 12)
+          ).map((s) => (
+            <div key={s.id} className="flex-shrink-0 text-center w-20">
+              <div className="w-14 h-14 mx-auto rounded-full overflow-hidden ring-2 ring-[#c8a97e] bg-white relative">
+                <Image src={s.avatar} alt={s.name} fill className="object-cover" />
               </div>
-              <div className="text-xs mt-2 truncate">{p.artisanName}</div>
+              <div className="text-xs mt-2 truncate">{s.name}</div>
             </div>
           ))}
         </div>
 
-        {/* Composer quick post UI below stories */}
-        <div className="mb-4 bg-card border border-muted rounded-lg p-3">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-800">
-              <Image src={posts[0]?.artisanAvatar || "/placeholder.svg"} alt="you" width={40} height={40} className="object-cover" />
-            </div>
-            <button
-              onClick={() => setShowComposer(true)}
-              className="flex-1 text-left px-3 py-2 rounded-full bg-muted text-sm text-muted-foreground"
-            >
-              Share something you made with heart…
-            </button>
-          </div>
+        {/* Composer quick post UI below stories (redesigned) */}
+        <div className="mb-4">
+          <div className="bg-gradient-to-b from-card/60 to-card/40 border border-muted rounded-xl p-3 shadow-sm overflow-hidden">
+            <div className="flex items-start gap-3">
+              <div className="w-12 h-12 rounded-full overflow-hidden bg-white relative flex-shrink-0">
+                <Image src="/images/profile/Rodrigo_Santos.jpg" alt="Rodrigo Santos" fill className="object-cover" />
+              </div>
 
-          <div className="mt-3 flex items-center justify-between">
-            <button className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Video className="w-5 h-5 text-red-500" /> Live video
-            </button>
-            <button className="flex items-center gap-2 text-sm text-muted-foreground">
-              <ImageIcon className="w-5 h-5 text-green-500" /> Photo/video
-            </button>
-            <button className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Smile className="w-5 h-5 text-yellow-400" /> Feeling/activity
-            </button>
+              <div className="flex-1 min-w-0">
+                <textarea
+                  value={composerText}
+                  onChange={(e) => setComposerText(e.target.value)}
+                  placeholder="What did you make or discover today?"
+                  onFocus={() => {
+                    if (typeof window !== "undefined" && window.innerWidth >= 640) setShowComposer(true)
+                  }}
+                  className="w-full resize-none h-12 sm:h-9.5 p-2 sm:p-2 rounded-md bg-transparent border border-dashed border-muted text-sm text-foreground placeholder:text-muted-foreground focus:outline-none min-w-0"
+                />
+
+                <div className="mt-3 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
+                    <button
+                      type="button"
+                      title="Add photo"
+                      className="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-muted/50"
+                      onClick={() => {
+                        if (typeof window !== "undefined" && window.innerWidth >= 640) setShowComposer(true)
+                      }}
+                    >
+                      <ImageIcon className="w-4 h-4 text-green-500" />
+                      <span className="hidden sm:inline">Photo</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      title="Video"
+                      className="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-muted/50"
+                      onClick={() => {
+                        if (typeof window !== "undefined" && window.innerWidth >= 640) setShowComposer(true)
+                      }}
+                    >
+                      <Video className="w-4 h-4 text-yellow-400" />
+                      <span className="hidden sm:inline">Video</span>
+                    </button>
+                  </div>
+
+                  <div className="flex-shrink-0">
+                    <Button
+                      size="sm"
+                      className="w-28 sm:w-36 flex items-center justify-center bg-[#8b5a2b] hover:bg-[#6f4426] text-white disabled:opacity-50"
+                      disabled={!composerText.trim()}
+                      onClick={() => {
+                        const name = composerName.trim() || "You"
+                        const text = composerText.trim()
+                        if (!text) return
+                        const newPost = {
+                          id: Date.now(),
+                          artisanId: 0,
+                          artisanName: name,
+                          artisanAvatar: "/images/profile/Rodrigo_Santos.jpg",
+                          image: "/placeholder.svg",
+                          caption: text,
+                          likes: 0,
+                          timestamp: "just now",
+                          liked: false,
+                          comments: [{ id: 1, name: name || "You", text: "Nice!", timestamp: "just now" }],
+                        }
+                        setPosts((prev) => [newPost, ...(prev || [])])
+                        setComposerName("")
+                        setComposerText("")
+                        setShowComposer(false)
+                      }}
+                    >
+                      <Send className="w-4 h-4 mr-2" /> Share
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -312,29 +388,27 @@ export default function FeedPage() {
             return (
               <Card key={post.id} className="overflow-hidden bg-card border border-muted">
                 {/* Post Header */}
-                <div className="p-3 border-b border-muted flex items-center gap-3">
-                  <Image
-                    src={post.artisanAvatar || "/placeholder.svg"}
-                    alt={post.artisanName}
-                    width={40}
-                    height={40}
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-sm text-foreground">{post.artisanName}</h3>
-                    <p className="text-xs text-muted-foreground">{post.artisanName} • Master Artisan</p>
+                <div className="py-0.5 px-2 border-b border-muted flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full overflow-hidden bg-white relative">
+                    <Image src={post.artisanAvatar || "/placeholder.svg"} alt={post.artisanName} fill className="object-cover" />
                   </div>
-                  <div className="text-xs text-muted-foreground">· 2h</div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-semibold text-sm text-foreground">{post.artisanName}</h3>
+                        <span className="text-xs text-muted-foreground">· {post.timestamp || "2h"}</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground">Master Artisan</p>
+                    </div>
                 </div>
 
-                {/* Post Image */}
-                <div className="relative overflow-hidden rounded-b-lg h-64 sm:h-80">
+                {/* Post Image: keep a consistent 3:2 aspect ratio to avoid height gaps */}
+                <div className="relative overflow-hidden rounded-b-lg -mt-3 w-full" style={{ paddingBottom: "66.66%" }}>
                   <Image src={post.image || "/placeholder.svg"} alt={post.caption} fill className="object-cover" />
                 </div>
 
                 {/* Post Actions */}
-                <div className="p-3">
-                  <div className="flex items-center gap-4 mb-2">
+                <div className="p-2 -mt-2">
+                  <div className="flex items-center gap-3 mb-1">
                     <button onClick={() => handleLike(post.id)} aria-pressed={post.liked} className="flex items-center gap-2 text-sm">
                       <Heart
                         className={`${post.liked ? "w-5 h-5 text-red-500" : "w-5 h-5 text-muted-foreground"} transition-colors duration-150`}
@@ -346,12 +420,12 @@ export default function FeedPage() {
                       <MessageCircle className="w-5 h-5 text-gray-500" /> <span className="text-foreground">{post.comments.length}</span>
                     </button>
                   </div>
-                  <p className="mb-2 text-sm text-foreground">
+                  <p className="mb-1 text-sm text-foreground">
                     <strong className="font-semibold">{post.artisanName}</strong> <span className="text-muted-foreground">{post.caption}</span>
                   </p>
 
                   {/* Comments */}
-                  <div className="space-y-2 mb-3">
+                  <div className="space-y-2 mb-2">
                     {hasMoreComments && (
                       <button
                         className="text-xs text-muted-foreground"
@@ -410,8 +484,8 @@ export default function FeedPage() {
                   return (
                     <div key={p.id || i} className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded overflow-hidden bg-gray-800">
-                          <Image src={product?.image || p.image || "/placeholder.svg"} alt={product?.name || p.caption} width={40} height={40} className="object-cover" />
+                        <div className="w-10 h-10 rounded overflow-hidden bg-white relative">
+                          <Image src={product?.image || p.image || "/placeholder.svg"} alt={product?.name || p.caption} fill className="object-cover" />
                         </div>
                         <div>
                           <div className="text-sm font-medium">{buyer}</div>
@@ -455,8 +529,8 @@ export default function FeedPage() {
                 <div className="flex flex-col gap-2 mb-3">
                   {artisans.slice(0, 3).map((a, idx) => (
                     <div key={a.id || idx} className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-800">
-                        <Image src={a.image || "/placeholder.svg"} alt={a.name} width={40} height={40} className="object-cover" />
+                      <div className="w-10 h-10 rounded-full overflow-hidden bg-white relative">
+                        <Image src={a.image || "/placeholder.svg"} alt={a.name} fill className="object-cover" />
                       </div>
                       <div className="flex-1">
                         <div className="text-sm font-medium">{a.name}</div>

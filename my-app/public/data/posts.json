@@ -2,6 +2,24 @@
   "posts": [
     {
       "id": 1,
+      "artisanId": 1001,
+      "artisanName": "Maestro Lilia Domingo",
+      "artisanAvatar": "/images/auction/elderly-filipino-woman-weaver-portrait.jpg",
+      "image": "/images/auction/beautiful-intricate-inabel-textile-weaving-traditi.jpg",
+      "caption": "Inabel Heritage Weave - Museum Grade",
+      "likes": 452,
+      "timestamp": "3h",
+      "comments": [
+        {
+          "id": 1,
+          "name": "Kenneth Gasmen",
+          "text": "A true masterpiece — breathtaking detail!",
+          "timestamp": "3h"
+        }
+      ]
+    },
+    {
+      "id": 2,
       "artisanId": 1,
       "artisanName": "Mercy Racaldo",
       "artisanAvatar": "/images/profile/Mercy_Racaldo.jpg",
@@ -18,7 +36,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": 3,
       "artisanId": 2,
       "artisanName": "Rosario Cruz",
       "artisanAvatar": "/images/profile/Rosario_Cruz.jpg",
@@ -35,7 +53,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "artisanId": 3,
       "artisanName": "Rodrigo Santos",
       "artisanAvatar": "/images/profile/Rodrigo_Santos.jpg",
@@ -43,6 +61,43 @@
       "caption": "Wood carving session. Creating intricate details on this new piece.",
       "likes": 312,
       "comments": []
+    },
+
+    {
+      "id": 5,
+      "artisanId": 1002,
+      "artisanName": "Elena Magsaysay",
+      "artisanAvatar": "/images/auction/filipino-artisan-woman-portrait.jpg",
+      "image": "/images/auction/beautiful-capiz-shell-wind-chime-handcrafted-iride.jpg",
+      "caption": "Capiz Shell Wind Chime",
+      "likes": 128,
+      "timestamp": "5h",
+      "comments": [
+        {
+          "id": 1,
+          "name": "Ana Mendoza",
+          "text": "Love the sound of this — so delicate!",
+          "timestamp": "4h"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "artisanId": 1003,
+      "artisanName": "Pedro Maclang",
+      "artisanAvatar": "/images/auction/pedro-maclang.jpg",
+      "image": "/images/auction/wooden-ifugao-bulul-rice-god-carved-sculpture-trad.jpg",
+      "caption": "Hand-carved Ifugao Bulul",
+      "likes": 241,
+      "timestamp": "1d",
+      "comments": [
+        {
+          "id": 1,
+          "name": "Maria Santos",
+          "text": "Such powerful carving — beautiful work.",
+          "timestamp": "23h"
+        }
+      ]
     }
   ]
 }

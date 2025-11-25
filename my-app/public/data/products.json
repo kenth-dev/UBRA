@@ -64,13 +64,13 @@
       "id": 7,
       "artisanId": 1,
       "name": "Abaca Tote Bag",
-      "price": 2200,
+      "price": 1200,
       "image": "/images/shop/abaca_tote_bag.jpeg",
       "description": "Eco-friendly abaca fiber tote bag perfect for shopping or travel.",
       "category": "Textiles",
       "rating": 4.7,
       "reviews": 124,
-      "discount": 0
+      "discount": 10 
     },
     {
       "id": 8,

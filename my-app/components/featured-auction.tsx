@@ -12,22 +12,7 @@ interface Props {
   onPlaceBid: (item: AuctionItem) => void
 }
 
-const featuredItem: AuctionItem = {
-  id: "featured-1",
-  title: "Inabel Heritage Weave - Museum Grade",
-  artisan: "Maestro Lilia Domingo",
-  artisanImage: "/elderly-filipino-woman-weaver-portrait.jpg",
-  image: "/beautiful-intricate-inabel-textile-weaving-traditi.jpg",
-  currentBid: 45000,
-  startingBid: 25000,
-  bids: 23,
-  timeLeft: { days: 0, hours: 4, minutes: 32, seconds: 15 },
-  isLimited: true,
-  edition: "1 of 1",
-  description:
-    "A masterpiece hand-woven over 6 months using traditional Ilocano techniques passed down through five generations.",
-  category: "Textiles",
-}
+import { featuredItem } from "@/components/auction-data"
 
 export function FeaturedAuction({ onPlaceBid }: Props) {
   const [timeLeft, setTimeLeft] = useState(featuredItem.timeLeft)
@@ -108,14 +93,10 @@ export function FeaturedAuction({ onPlaceBid }: Props) {
               </div>
             </div>
 
-            <div className="relative mt-3 sm:mt-0 sm:absolute sm:-bottom-6 sm:left-6 flex items-center gap-3 bg-card rounded-full pl-1 pr-4 py-1 shadow-lg border border-border">
-              <Image
-                src={toAuctionPath(featuredItem.artisanImage || "/placeholder.svg")}
-                alt={featuredItem.artisan}
-                width={40}
-                height={40}
-                className="rounded-full object-cover"
-              />
+            <div className="mt-3 sm:mt-4 flex items-center gap-3 bg-card rounded-full pl-1 pr-4 py-1 shadow-lg border border-border overflow-hidden">
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-white relative flex-shrink-0">
+                <Image src={toAuctionPath(featuredItem.artisanImage || "/placeholder.svg")} alt={featuredItem.artisan} fill className="object-cover" />
+              </div>
               <div>
                 <p className="text-xs text-muted-foreground">Artisan</p>
                 <p className="text-sm font-semibold text-foreground">{featuredItem.artisan}</p>
