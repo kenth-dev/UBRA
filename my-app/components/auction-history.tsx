@@ -21,7 +21,7 @@ const artisanStats = [
   {
     id: "a2",
     name: "Pedro Maclang",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "/pedro-maclang.jpg",
     specialty: "Wood Carving",
     location: "Ifugao",
     totalAuctions: 32,
@@ -32,7 +32,7 @@ const artisanStats = [
   {
     id: "a3",
     name: "Rosa Villanueva",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "/rosa-villanueva.jpg",
     specialty: "Binakol Weaving",
     location: "Ilocos Sur",
     totalAuctions: 28,
