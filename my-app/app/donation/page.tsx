@@ -84,31 +84,24 @@ export default function DonationPage() {
           <Link href="/" className="text-primary hover:underline mb-6 inline-block text-sm">
             ← Back to Home
           </Link>
-          <div className="mb-4">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">Community Fund Transparency</h1>
-            <p className="text-sm sm:text-base text-muted-foreground mt-1">Every purchase supports Filipino artisans and communities</p>
-          </div>
         </div>
 
-        {/* Total Donations Summary */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
           <Card className="lg:col-span-2 p-4 sm:p-8 bg-gradient-to-br from-primary/10 to-secondary/10">
-            <div className="mb-6">
-              <h2 className="text-lg font-semibold mb-2">Total Donations Collected (Last 7 days)</h2>
-              <div className="h-40 sm:h-48">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={weeklyData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" />
-                    <XAxis dataKey="day" stroke="rgba(0,0,0,0.5)" />
-                    <YAxis stroke="rgba(0,0,0,0.5)" />
-                    <Tooltip
-                      contentStyle={{ backgroundColor: "#f5f1ec", border: "1px solid #c8a97e" }}
-                      formatter={(value) => `₱${value.toLocaleString()}`}
-                    />
-                    <Bar dataKey="value" fill="#c8a97e" radius={[8, 8, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
+            <h3 className="font-semibold mb-4">Total Donations This Week</h3>
+            <div className="h-40 sm:h-48">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={weeklyData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" />
+                  <XAxis dataKey="day" stroke="rgba(0,0,0,0.5)" />
+                  <YAxis stroke="rgba(0,0,0,0.5)" />
+                  <Tooltip
+                    contentStyle={{ backgroundColor: "#f5f1ec", border: "1px solid #c8a97e" }}
+                    formatter={(value) => `₱${value.toLocaleString()}`}
+                  />
+                  <Bar dataKey="value" fill="#c8a97e" radius={[8, 8, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
             </div>
           </Card>
 

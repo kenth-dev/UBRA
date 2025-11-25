@@ -216,20 +216,7 @@ export function FeaturedAuction({ onPlaceBid }: Props) {
           </div>
         </div>
       </div>
-      {/* Fixed bottom CTA for quick bid on mobile */}
-      <div className="fixed bottom-0 left-0 right-0 md:hidden bg-card/95 border-t border-border p-3 z-40">
-        <div className="flex items-center gap-3">
-          <div>
-            <div className="text-xs text-muted-foreground">Current Bid</div>
-            <div className="text-lg font-bold text-primary">₱{featuredItem.currentBid.toLocaleString()}</div>
-          </div>
-          <div className="flex-1">
-            <Button className="w-full bg-primary text-primary-foreground" onClick={() => onPlaceBid(featuredItem)}>
-              Place Bid
-            </Button>
-          </div>
-        </div>
-      </div>
+      {/* Mobile fixed CTA removed to avoid duplicate Place Bid on auction page */}
     </section>
   )
 }
