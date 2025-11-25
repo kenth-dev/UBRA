@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react"
+import { Sparkles } from "lucide-react"
 import Image from "next/image"
 import { toAuctionPath } from "@/components/auction-image"
 
@@ -34,8 +34,7 @@ export function AuctionHero() {
     return () => clearInterval(timer)
   }, [])
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
+  // carousel controls intentionally removed for a cleaner header on mobile
 
   return (
     <section className="relative min-h-[60vh] md:min-h-[85vh] pt-16 md:pt-20 overflow-hidden">
@@ -112,18 +111,7 @@ export function AuctionHero() {
         </div>
       </div>
 
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-card/20 backdrop-blur-sm hover:bg-card/40 transition text-primary-foreground"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-card/20 backdrop-blur-sm hover:bg-card/40 transition text-primary-foreground"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </button>
+      {/* navigation arrows removed */}
     </section>
   )
 }
