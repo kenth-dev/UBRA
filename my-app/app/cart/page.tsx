@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
-import { Trash2, CreditCard, Package } from "lucide-react"
+import { Trash2, CreditCard, Package, CheckCircle } from "lucide-react"
 import { useState, useRef } from "react"
 
 export default function CartPage() {
@@ -109,6 +109,15 @@ export default function CartPage() {
     return (
       <div className="min-h-screen bg-background pt-20">
         <div className="max-w-3xl mx-auto px-4 py-12">
+          <div className="mb-6 p-4 rounded-lg bg-green-50 border border-green-100 flex items-start gap-4">
+            <CheckCircle className="w-8 h-8 text-green-600 mt-1" />
+            <div>
+              <h2 className="text-xl font-bold">Thank you for your purchase!</h2>
+              <p className="text-sm text-gray-700">Your payment was confirmed. Below is your receipt and order details.</p>
+              <p className="text-xs text-gray-500 mt-1">Order ID: <span className="font-mono">{orderId}</span></p>
+            </div>
+          </div>
+
           <div ref={receiptRef} className="bg-white rounded-lg p-6 shadow">
             <div className="flex items-center justify-between mb-4">
               <div>
