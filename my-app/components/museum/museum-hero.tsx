@@ -20,8 +20,8 @@ export function MuseumHero() {
             backgroundImage: `url('/images/museum/filipino-traditional-weaving-patterns-artistic-bac.jpg')`,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
-        <div className="absolute inset-0 gradient-amane-dark opacity-70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brown/60 via-black/30 to-background" />
+        <div className="absolute inset-0 bg-black/30" />
       </div>
 
       {/* Floating decorative elements */}
@@ -33,40 +33,40 @@ export function MuseumHero() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
         <div
           className={`transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
           {/* Subtitle */}
-          <p className="text-sm md:text-base uppercase tracking-[0.3em] text-primary mb-6">
+          <p className="text-xs sm:text-sm md:text-base uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white mb-3 sm:mb-4 md:mb-6 drop-shadow-lg">
             Discover Filipino Heritage
           </p>
 
           {/* Main Title */}
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium text-secondary leading-tight mb-8">
-            <span className="block">Where Culture</span>
-            <span className="block text-primary italic">Comes Alive</span>
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-medium leading-tight mb-4 sm:mb-6 md:mb-8">
+            <span className="block text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">Where Culture</span>
+            <span className="block text-primary italic drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">Comes Alive</span>
           </h1>
 
           {/* Description */}
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-secondary/80 leading-relaxed mb-12">
+          <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-xl text-white leading-relaxed mb-6 sm:mb-8 md:mb-12 px-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] font-medium">
             Step into an immersive journey through centuries of Filipino craftsmanship. Experience the stories,
             techniques, and cultural heritage behind each masterpiece.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <a
               href="#exhibits"
-              className="px-8 py-4 bg-secondary text-secondary-foreground font-medium rounded-full hover:bg-secondary/90 transition-all hover:scale-105"
+              className="px-6 sm:px-8 py-3 sm:py-4 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 transition-all hover:scale-105 shadow-xl text-sm sm:text-base w-full sm:w-auto"
             >
               Begin Your Journey
             </a>
             <a
               href="#tour"
-              className="px-8 py-4 border-2 border-secondary text-secondary font-medium rounded-full hover:bg-secondary/10 transition-all"
+              className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-white bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full hover:bg-white hover:text-secondary transition-all text-sm sm:text-base w-full sm:w-auto shadow-xl"
             >
               Take Virtual Tour
             </a>
@@ -76,21 +76,21 @@ export function MuseumHero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <ChevronDown className="h-8 w-8 text-secondary/60" />
+        <ChevronDown className="h-8 w-8 text-white/80 drop-shadow-lg" />
       </div>
 
       {/* Stats bar */}
-      <div className="absolute bottom-0 left-0 right-0 bg-background/80 backdrop-blur-sm border-t border-border">
-        <div className="max-w-6xl mx-auto px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-border shadow-2xl">
+        <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-6 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-8">
           {[
             { value: "500+", label: "Artifacts" },
             { value: "50+", label: "Artisans Featured" },
-            { value: "17", label: "Regions Represented" },
+            { value: "18", label: "Regions Represented" },
             { value: "100+", label: "Cultural Stories" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="font-serif text-3xl md:text-4xl font-semibold text-secondary">{stat.value}</div>
-              <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+              <div className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-primary">{stat.value}</div>
+              <div className="text-xs sm:text-sm text-secondary font-medium mt-1">{stat.label}</div>
             </div>
           ))}
         </div>

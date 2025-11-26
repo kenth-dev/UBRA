@@ -93,40 +93,40 @@ export default function DonationPage() {
         </div>
 
         {/* Page title + top summary (added) */}
-        <div className="mb-8">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Community Fund Transparency</h1>
-          <p className="text-sm text-muted-foreground mt-2">Every purchase supports Filipino artisans and communities</p>
+        <div className="mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">Community Fund Transparency</h1>
+          <p className="text-xs sm:text-sm text-muted-foreground mt-2">Every purchase supports Filipino artisans and communities</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
-          <Card className="lg:col-span-2 p-6 sm:p-8 rounded-lg border border-border bg-[#f6f1ea]">
-            <div className="flex items-start justify-between gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
+          <Card className="lg:col-span-2 p-4 sm:p-6 lg:p-8 rounded-lg border border-border bg-[#f6f1ea]">
+            <div className="flex items-start justify-between gap-3">
               <div className="flex-1">
-                <p className="text-sm text-muted-foreground">Total Donations Collected</p>
-                <div className="flex items-center gap-4 mt-2">
-                  <p className="text-4xl sm:text-5xl font-extrabold leading-none">
-                    <span className="text-2xl align-top mr-1">₱</span>
+                <p className="text-xs sm:text-sm text-muted-foreground">Total Donations Collected</p>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-1 sm:mt-2">
+                  <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-none">
+                    <span className="text-lg sm:text-xl md:text-2xl align-top mr-1">₱</span>
                     {donations.totalCollected.toLocaleString()}
                   </p>
-                  <p className="text-sm text-green-600 font-medium">↗ +12.5% from last month</p>
+                  <p className="text-xs sm:text-sm text-green-600 font-medium">↗ +12.5% from last month</p>
                 </div>
               </div>
 
-              <div className="w-40 text-right hidden lg:block">
-                <p className="text-sm text-muted-foreground">Goal</p>
-                <p className="text-2xl font-bold">₱{donations.goal.toLocaleString()}</p>
+              <div className="w-24 sm:w-32 lg:w-40 text-right hidden md:block">
+                <p className="text-xs sm:text-sm text-muted-foreground">Goal</p>
+                <p className="text-lg sm:text-xl lg:text-2xl font-bold">₱{donations.goal.toLocaleString()}</p>
                 <p className="text-xs text-muted-foreground mt-1">{percent}% achieved</p>
               </div>
             </div>
 
-            <div className="mt-6 h-48 rounded-md overflow-hidden">
+            <div className="mt-4 sm:mt-6 h-32 sm:h-40 md:h-48 rounded-md overflow-hidden">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={weeklyData} margin={{ top: 8, right: 8, left: 8, bottom: 8 }}>
+                <BarChart data={weeklyData} margin={{ top: 4, right: 4, left: 4, bottom: 4 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.06)" />
-                  <XAxis dataKey="day" stroke="rgba(0,0,0,0.5)" />
-                  <YAxis stroke="rgba(0,0,0,0.5)" />
+                  <XAxis dataKey="day" stroke="rgba(0,0,0,0.5)" tick={{ fontSize: 12 }} />
+                  <YAxis stroke="rgba(0,0,0,0.5)" tick={{ fontSize: 12 }} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: "#f6f1ea", border: "1px solid #e1cfb7" }}
+                    contentStyle={{ backgroundColor: "#f6f1ea", border: "1px solid #e1cfb7", fontSize: 12 }}
                     formatter={(value) => `₱${value.toLocaleString()}`}
                   />
                   <Bar dataKey="value" fill="#c8a97e" radius={[10, 10, 6, 6]} />
@@ -136,13 +136,13 @@ export default function DonationPage() {
           </Card>
 
           {/* Goal Progress */}
-          <Card className="p-4 sm:p-8">
-            <h3 className="font-semibold mb-6 flex items-center gap-2">
-              <Target className="w-5 h-5 text-primary" />
+          <Card className="p-3 sm:p-4 md:p-6 lg:p-8">
+            <h3 className="text-sm sm:text-base font-semibold mb-3 sm:mb-4 md:mb-6 flex items-center gap-2">
+              <Target className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
               2025 Goal
             </h3>
-            <div className="text-center mb-6">
-              <div className="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-4">
+            <div className="text-center mb-3 sm:mb-4 md:mb-6">
+              <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-3 sm:mb-4">
                 <svg className="w-full h-full" viewBox="0 0 100 100">
                   <circle cx="50" cy="50" r="45" fill="none" stroke="#eaddc8" strokeWidth="6" />
                   <circle
@@ -158,25 +158,25 @@ export default function DonationPage() {
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <p className="text-xl sm:text-2xl font-bold">{percent}%</p>
+                  <p className="text-lg sm:text-xl md:text-2xl font-bold">{percent}%</p>
                   <p className="text-xs text-muted-foreground">Progress</p>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground mb-1">₱{donations.totalCollected.toLocaleString()} of ₱{donations.goal.toLocaleString()}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground mb-1">₱{donations.totalCollected.toLocaleString()} of ₱{donations.goal.toLocaleString()}</p>
               <p className="text-xs font-medium">₱{(donations.goal - donations.totalCollected).toLocaleString()} left to reach goal</p>
             </div>
           </Card>
         </div>
 
         {/* Impact Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
           {impactStats.map((stat, idx) => {
             const Icon = stat.icon
             return (
-              <Card key={idx} className="p-6 hover:shadow-md transition">
-                <Icon className="w-8 h-8 text-primary mb-3" />
-                <p className="text-xl sm:text-2xl font-bold mb-1">{stat.value}</p>
-                <p className="text-xs sm:text-xs text-muted-foreground mb-2">{stat.label}</p>
+              <Card key={idx} className="p-3 sm:p-4 md:p-6 hover:shadow-md transition">
+                <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-primary mb-2 sm:mb-3" />
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-1">{stat.value}</p>
+                <p className="text-xs text-muted-foreground mb-1 sm:mb-2">{stat.label}</p>
                 <p className="text-xs text-green-600 font-medium">{stat.change}</p>
               </Card>
             )
@@ -184,23 +184,23 @@ export default function DonationPage() {
         </div>
 
         {/* Category Breakdown */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
-          <Card className="lg:col-span-2 p-4 sm:p-8">
-            <h2 className="text-2xl font-bold mb-6">Donation Breakdown by Category</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 md:mb-10">
+          <Card className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 md:mb-6">Donation Breakdown by Category</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8">
               {categoryData.map((cat, idx) => (
-                <div key={idx} className="p-3 sm:p-4 rounded-lg border border-border">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: cat.color }} />
-                      <h3 className="font-semibold text-sm">{cat.name}</h3>
+                <div key={idx} className="p-2 sm:p-3 md:p-4 rounded-lg border border-border">
+                  <div className="flex items-center justify-between mb-1 sm:mb-2">
+                    <div className="flex items-center gap-1 sm:gap-2">
+                      <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full" style={{ backgroundColor: cat.color }} />
+                      <h3 className="font-semibold text-xs sm:text-sm">{cat.name}</h3>
                     </div>
-                    <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">{cat.value}%</span>
+                    <span className="text-xs font-bold text-primary bg-primary/10 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">{cat.value}%</span>
                   </div>
-                  <p className="text-base sm:text-lg font-bold mb-1">{cat.amount}</p>
-                  <div className="w-full bg-muted rounded-full h-2">
+                  <p className="text-sm sm:text-base md:text-lg font-bold mb-1">{cat.amount}</p>
+                  <div className="w-full bg-muted rounded-full h-1.5 sm:h-2">
                     <div
-                      className="h-2 rounded-full transition-all"
+                      className="h-1.5 sm:h-2 rounded-full transition-all"
                       style={{ width: `${cat.value}%`, backgroundColor: cat.color }}
                     />
                   </div>
@@ -209,102 +209,102 @@ export default function DonationPage() {
             </div>
 
             {/* Pie Chart */}
-            <div className="h-48">
+            <div className="h-32 sm:h-40 md:h-48">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                  <Pie data={categoryData} cx="50%" cy="50%" innerRadius={60} outerRadius={80} dataKey="value">
+                  <Pie data={categoryData} cx="50%" cy="50%" innerRadius={40} outerRadius={60} dataKey="value">
                     {categoryData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(value) => `${value}%`} />
+                  <Tooltip formatter={(value) => `${value}%`} contentStyle={{ fontSize: 12 }} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
           </Card>
 
           {/* Category Details */}
-          <div className="space-y-4">
-            <Card className="p-6 bg-blue-50 border-blue-200">
-              <h3 className="font-semibold mb-2 text-blue-900">Training Programs</h3>
-              <p className="text-sm text-blue-800 mb-4">
+          <div className="space-y-2 sm:space-y-3 md:space-y-4">
+            <Card className="p-3 sm:p-4 md:p-6 bg-blue-50 border-blue-200">
+              <h3 className="text-sm sm:text-base font-semibold mb-1 sm:mb-2 text-blue-900">Training Programs</h3>
+              <p className="text-xs sm:text-sm text-blue-800 mb-2 sm:mb-3 md:mb-4">
                 Workshops and skill development to help artisans improve their craft and business acumen.
               </p>
-              <div className="text-2xl font-bold text-blue-900">40%</div>
+              <div className="text-lg sm:text-xl md:text-2xl font-bold text-blue-900">40%</div>
               <p className="text-xs text-blue-700 mt-1">₱280,000</p>
             </Card>
 
-            <Card className="p-6 bg-orange-50 border-orange-200">
-              <h3 className="font-semibold mb-2 text-orange-900">Artisan Aid</h3>
-              <p className="text-sm text-orange-800 mb-4">
+            <Card className="p-3 sm:p-4 md:p-6 bg-orange-50 border-orange-200">
+              <h3 className="text-sm sm:text-base font-semibold mb-1 sm:mb-2 text-orange-900">Artisan Aid</h3>
+              <p className="text-xs sm:text-sm text-orange-800 mb-2 sm:mb-3 md:mb-4">
                 Direct financial support and equipment for artisans in need.
               </p>
-              <div className="text-2xl font-bold text-orange-900">35%</div>
+              <div className="text-lg sm:text-xl md:text-2xl font-bold text-orange-900">35%</div>
               <p className="text-xs text-orange-700 mt-1">₱245,000</p>
             </Card>
 
-            <Card className="p-6 bg-red-50 border-red-200">
-              <h3 className="font-semibold mb-2 text-red-900">Disaster Response</h3>
-              <p className="text-sm text-red-800 mb-4">Emergency relief for artisans affected by natural disasters.</p>
-              <div className="text-2xl font-bold text-red-900">25%</div>
+            <Card className="p-3 sm:p-4 md:p-6 bg-red-50 border-red-200">
+              <h3 className="text-sm sm:text-base font-semibold mb-1 sm:mb-2 text-red-900">Disaster Response</h3>
+              <p className="text-xs sm:text-sm text-red-800 mb-2 sm:mb-3 md:mb-4">Emergency relief for artisans affected by natural disasters.</p>
+              <div className="text-lg sm:text-xl md:text-2xl font-bold text-red-900">25%</div>
               <p className="text-xs text-red-700 mt-1">₱175,000</p>
             </Card>
           </div>
         </div>
 
         {/* Recent Donations & Distributions */}
-        <Card className="p-8 mb-12">
-          <h2 className="text-2xl font-bold mb-6">Recent Donations & Distributions</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+        <Card className="p-3 sm:p-4 md:p-6 lg:p-8 mb-6 sm:mb-8 md:mb-12">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 md:mb-6">Recent Donations & Distributions</h2>
+          <div className="overflow-x-auto -mx-3 sm:mx-0">
+            <table className="w-full text-xs sm:text-sm">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Activity</th>
-                  <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Category</th>
-                  <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Amount</th>
-                  <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Date</th>
-                  <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Status</th>
+                  <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-muted-foreground">Activity</th>
+                  <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-muted-foreground hidden md:table-cell">Category</th>
+                  <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-muted-foreground">Amount</th>
+                  <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-muted-foreground hidden sm:table-cell">Date</th>
+                  <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-semibold text-muted-foreground hidden lg:table-cell">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {recentDonations.map((donation, idx) => (
                   <tr key={idx} className="border-b border-border hover:bg-muted/30 transition">
-                    <td className="py-4 px-4">
-                      <div className="flex items-center gap-3">
+                    <td className="py-2 sm:py-3 md:py-4 px-2 sm:px-4">
+                      <div className="flex items-center gap-2 sm:gap-3">
                         <div
-                          className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                          className={`w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center ${
                             donation.type === "distribution" ? "bg-orange-100" : "bg-green-100"
                           }`}
                         >
                           {donation.type === "distribution" ? (
                             <ArrowDownLeft
-                              className={`w-5 h-5 ${donation.type === "distribution" ? "text-orange-600" : "text-green-600"}`}
+                              className={`w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 ${donation.type === "distribution" ? "text-orange-600" : "text-green-600"}`}
                             />
                           ) : (
-                            <ArrowUpRight className="w-5 h-5 text-green-600" />
+                            <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-green-600" />
                           )}
                         </div>
                         <div>
-                          <p className="font-semibold">{donation.title}</p>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-xs sm:text-sm font-semibold">{donation.title}</p>
+                          <p className="text-xs text-muted-foreground hidden sm:block">
                             {donation.artisans || donation.families || donation.transactions}
                           </p>
                         </div>
                       </div>
                     </td>
-                    <td className="py-4 px-4 text-muted-foreground">{donation.category}</td>
-                    <td className="py-4 px-4">
+                    <td className="py-2 sm:py-3 md:py-4 px-2 sm:px-4 text-muted-foreground hidden md:table-cell">{donation.category}</td>
+                    <td className="py-2 sm:py-3 md:py-4 px-2 sm:px-4">
                       <span
-                        className={`font-semibold ${donation.type === "distribution" ? "text-orange-600" : "text-green-600"}`}
+                        className={`text-xs sm:text-sm font-semibold ${donation.type === "distribution" ? "text-orange-600" : "text-green-600"}`}
                       >
                         {donation.type === "distribution" ? "-" : "+"}
                         {donation.amount}
                       </span>
                     </td>
-                    <td className="py-4 px-4 text-muted-foreground">{donation.date}</td>
-                    <td className="py-4 px-4">
+                    <td className="py-2 sm:py-3 md:py-4 px-2 sm:px-4 text-muted-foreground hidden sm:table-cell">{donation.date}</td>
+                    <td className="py-2 sm:py-3 md:py-4 px-2 sm:px-4 hidden lg:table-cell">
                       <span
-                        className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                        className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-medium ${
                           donation.status === "Delivered" ? "bg-green-100 text-green-700" : "bg-blue-100 text-blue-700"
                         }`}
                       >
@@ -319,10 +319,10 @@ export default function DonationPage() {
         </Card>
 
         {/* How It Works */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8 md:mb-12">
           <div>
-            <h2 className="text-2xl font-bold mb-6">How Community Donations Work</h2>
-            <div className="space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 md:mb-6">How Community Donations Work</h2>
+            <div className="space-y-2 sm:space-y-3 md:space-y-4">
               {[
                 { num: "1", title: "You Shop", desc: "Every product purchased from UBRA" },
                 {
@@ -333,22 +333,22 @@ export default function DonationPage() {
                 { num: "3", title: "We Allocate", desc: "Funds distributed to three main categories" },
                 { num: "4", title: "Impact Grows", desc: "Artisans thrive, communities flourish" },
               ].map((step, idx) => (
-                <div key={idx} className="flex gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">
+                <div key={idx} className="flex gap-2 sm:gap-3 md:gap-4">
+                  <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-xs sm:text-sm">
                     {step.num}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground">{step.title}</h3>
-                    <p className="text-sm text-muted-foreground">{step.desc}</p>
+                    <h3 className="text-sm sm:text-base font-semibold text-foreground">{step.title}</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{step.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <Card className="p-8 bg-gradient-to-br from-secondary/10 to-primary/10 border border-primary/20">
-            <h3 className="text-xl font-bold mb-4">Our Commitment</h3>
-            <ul className="space-y-3 text-sm">
+          <Card className="p-4 sm:p-6 md:p-8 bg-gradient-to-br from-secondary/10 to-primary/10 border border-primary/20">
+            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4">Our Commitment</h3>
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
               <li className="flex gap-2">
                 <span className="text-primary font-bold">✓</span>
                 <span>100% transparent fund allocation</span>
@@ -376,18 +376,18 @@ export default function DonationPage() {
         </div>
 
         {/* Call to Action (full-bleed) */}
-        <section className="py-20 bg-secondary text-secondary-foreground w-full">
+        <section className="py-10 sm:py-12 md:py-16 lg:py-20 bg-secondary text-secondary-foreground w-full">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">Join the Artisan Movement</h2>
-              <p className="max-w-xl mx-auto mb-8">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4">Join the Artisan Movement</h2>
+              <p className="max-w-xl mx-auto mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base">
                 Every purchase directly supports Filipino artisans and their communities. Shop handmade, impact lives, and
                 build a sustainable future for traditional craftsmanship.
               </p>
 
               <div>
                 <Link href="/shop">
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm sm:text-base">
                     Shop & Make an Impact
                   </Button>
                 </Link>
