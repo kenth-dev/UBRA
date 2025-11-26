@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import Link from "next/link"
-import { Users, TrendingUp, ArrowUpRight, ArrowDownLeft, Target, Gift } from "lucide-react"
+import { Users, TrendingUp, ArrowUpRight, ArrowDownLeft, Target, Gift, Bell } from "lucide-react"
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 import { donations } from "@/lib/donations"
 import { businessModel } from "@/lib/businessModel"
@@ -19,12 +19,18 @@ export default function DonationPage() {
     { day: "S", value: 28000 },
   ]
 
-  // Category breakdown
-  const categoryData = [
-    { name: "Artisan Aid", value: 35, color: "#c8a97e", amount: "₱245,000" },
-    { name: "Training Programs", value: 40, color: "#8b6f47", amount: "₱280,000" },
-    { name: "Disaster Response", value: 25, color: "#d4b896", amount: "₱175,000" },
-  ]
+  // Category breakdown (expanded to 7 categories). Amounts computed from donations.totalCollected
+  const rawCategories = [
+    { name: "Artisan Aid", value: 25, color: "#c8a97e" },
+    { name: "Training Programs", value: 30, color: "#8b6f47" },
+    { name: "Disaster Response", value: 15, color: "#d4b896" },
+    { name: "Community Events", value: 10, color: "#b0855b" },
+    { name: "Other Initiatives", value: 5, color: "#a1866f" },]
+
+  const categoryData = rawCategories.map((c) => ({
+    ...c,
+    amount: `₱${Math.round((donations.totalCollected * c.value) / 100).toLocaleString()}`,
+  }))
 
   // Recent donations/distributions (dates updated to 2025; amounts are 6-digit pesos)
   const recentDonations = [
@@ -77,8 +83,8 @@ export default function DonationPage() {
   const percent = Math.round((donations.totalCollected / donations.goal) * 100)
 
   return (
-    <div className="min-h-screen bg-background pt-20">
-      <div className="max-w-7xl mx-auto px-4 py-6 sm:py-8">
+    <div className="min-h-screen bg-background pt-20 flex flex-col">
+      <div className="max-w-7xl mx-auto px-4 py-6 sm:py-8 flex-1">
         {/* Header */}
         <div className="mb-12">
           <Link href="/" className="text-primary hover:underline mb-6 inline-block text-sm">
@@ -86,20 +92,44 @@ export default function DonationPage() {
           </Link>
         </div>
 
+        {/* Page title + top summary (added) */}
+        <div className="mb-8">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Community Fund Transparency</h1>
+          <p className="text-sm text-muted-foreground mt-2">Every purchase supports Filipino artisans and communities</p>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
-          <Card className="lg:col-span-2 p-4 sm:p-8 bg-gradient-to-br from-primary/10 to-secondary/10">
-            <h3 className="font-semibold mb-4">Total Donations This Week</h3>
-            <div className="h-40 sm:h-48">
+          <Card className="lg:col-span-2 p-6 sm:p-8 rounded-lg border border-border bg-[#f6f1ea]">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1">
+                <p className="text-sm text-muted-foreground">Total Donations Collected</p>
+                <div className="flex items-center gap-4 mt-2">
+                  <p className="text-4xl sm:text-5xl font-extrabold leading-none">
+                    <span className="text-2xl align-top mr-1">₱</span>
+                    {donations.totalCollected.toLocaleString()}
+                  </p>
+                  <p className="text-sm text-green-600 font-medium">↗ +12.5% from last month</p>
+                </div>
+              </div>
+
+              <div className="w-40 text-right hidden lg:block">
+                <p className="text-sm text-muted-foreground">Goal</p>
+                <p className="text-2xl font-bold">₱{donations.goal.toLocaleString()}</p>
+                <p className="text-xs text-muted-foreground mt-1">{percent}% achieved</p>
+              </div>
+            </div>
+
+            <div className="mt-6 h-48 rounded-md overflow-hidden">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={weeklyData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" />
+                <BarChart data={weeklyData} margin={{ top: 8, right: 8, left: 8, bottom: 8 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.06)" />
                   <XAxis dataKey="day" stroke="rgba(0,0,0,0.5)" />
                   <YAxis stroke="rgba(0,0,0,0.5)" />
                   <Tooltip
-                    contentStyle={{ backgroundColor: "#f5f1ec", border: "1px solid #c8a97e" }}
+                    contentStyle={{ backgroundColor: "#f6f1ea", border: "1px solid #e1cfb7" }}
                     formatter={(value) => `₱${value.toLocaleString()}`}
                   />
-                  <Bar dataKey="value" fill="#c8a97e" radius={[8, 8, 0, 0]} />
+                  <Bar dataKey="value" fill="#c8a97e" radius={[10, 10, 6, 6]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -343,20 +373,32 @@ export default function DonationPage() {
           </Card>
         </div>
 
-        {/* Call to Action */}
-        <div className="bg-gradient-amane-dark rounded-lg p-12 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-foreground">Join the Artisan Movement</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-            Every purchase directly supports Filipino artisans and their communities. Shop handmade, impact lives, and
-            build a sustainable future for traditional craftsmanship.
-          </p>
-          <Link href="/shop">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-              Shop & Make an Impact
-            </Button>
-          </Link>
         </div>
-      </div>
+
+        {/* Call to Action (full-bleed) */}
+        <section className="py-20 bg-secondary text-secondary-foreground w-full">
+          <div className="container mx-auto px-4">
+            <div className="max-w-2xl mx-auto text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-6">
+                <Bell className="h-8 w-8 text-primary" />
+              </div>
+
+              <h2 className="text-3xl font-bold mb-4">Join the Artisan Movement</h2>
+              <p className="max-w-xl mx-auto mb-8">
+                Every purchase directly supports Filipino artisans and their communities. Shop handmade, impact lives, and
+                build a sustainable future for traditional craftsmanship.
+              </p>
+
+              <div>
+                <Link href="/shop">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                    Shop & Make an Impact
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
     </div>
   )
 }
