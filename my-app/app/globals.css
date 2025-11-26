@@ -231,4 +231,9 @@
     animation: gradient-shift 15s ease infinite;
     position: relative;
   }
+
+  /* Museum brown gradient for virtual tour section */
+  .gradient-museum-dark {
+    background: linear-gradient(180deg, #3d2b1f 0%, #5c3a21 50%, #8b6f47 100%);
+  }
 }
