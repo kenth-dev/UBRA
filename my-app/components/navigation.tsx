@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, ShoppingBag, Heart } from "lucide-react"
+import { Menu, X, ShoppingBag, Heart, User } from "lucide-react"
 import { useApp } from "@/lib/context"
 import { usePathname } from "next/navigation"
 
@@ -36,7 +36,6 @@ export function Navigation() {
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-8">
             {[
-              { href: "/", label: "Home" },
               { href: "/feed", label: "Feed" },
               { href: "/shop", label: "Shop" },
               { href: "/museum", label: "Museum" },
@@ -85,6 +84,11 @@ export function Navigation() {
               )}
             </Link>
 
+            {/* Profile */}
+            <Link href="/profile" className="relative">
+              <User className="w-6 h-6" />
+            </Link>
+
             {/* Mobile menu button */}
             <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -96,7 +100,6 @@ export function Navigation() {
         {mobileMenuOpen && (
           <div className="md:hidden pb-4 border-t border-muted pt-4 space-y-3">
             {[
-              { href: "/", label: "Home" },
               { href: "/feed", label: "Feed" },
               { href: "/shop", label: "Shop" },
               { href: "/museum", label: "Museum" },
