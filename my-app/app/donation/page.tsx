@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import Link from "next/link"
-import { Users, TrendingUp, ArrowUpRight, ArrowDownLeft, Target, Gift, Bell } from "lucide-react"
+import { Users, TrendingUp, ArrowUpRight, ArrowDownLeft, Target, Gift } from "lucide-react"
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 import { donations } from "@/lib/donations"
 import { businessModel } from "@/lib/businessModel"
@@ -379,10 +379,6 @@ export default function DonationPage() {
         <section className="py-20 bg-secondary text-secondary-foreground w-full">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-6">
-                <Bell className="h-8 w-8 text-primary" />
-              </div>
-
               <h2 className="text-3xl font-bold mb-4">Join the Artisan Movement</h2>
               <p className="max-w-xl mx-auto mb-8">
                 Every purchase directly supports Filipino artisans and their communities. Shop handmade, impact lives, and
