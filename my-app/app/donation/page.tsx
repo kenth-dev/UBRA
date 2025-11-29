@@ -86,7 +86,7 @@ export default function DonationPage() {
     <div className="min-h-screen bg-background pt-20 flex flex-col">
       <div className="max-w-7xl mx-auto px-4 py-6 sm:py-8 flex-1">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-1">
           <Link href="/" className="text-primary hover:underline mb-6 inline-block text-sm">
             ← Back to Home
           </Link>
