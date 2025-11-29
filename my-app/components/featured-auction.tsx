@@ -46,9 +46,9 @@ export function FeaturedAuction({ onPlaceBid }: Props) {
   const isEndingSoon = timeLeft.days === 0 && timeLeft.hours < 6
 
   return (
-    <section className="py-12 md:py-20 bg-muted/30">
+    <section className="py-8 md:py-12 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-10">
+        <div className="flex items-center justify-between mb-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <Flame className="h-5 w-5 text-destructive" />
