@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react"
 import { useApp } from "@/lib/context"
 import { Button } from "@/components/ui/button"
+import { Toast } from "@/components/ui/toast"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight, Heart, Share2, Truck, Shield, RotateCw, ShoppingCart } from "lucide-react"
@@ -34,6 +35,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   const [selectedSize, setSelectedSize] = useState("Medium")
   const [quantity, setQuantity] = useState(1)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [showToast, setShowToast] = useState(false)
   const { addToCart, favorites, toggleFavorite } = useApp()
 
   // Next.js may provide a promised `params` value that needs to be unwrapped
@@ -255,6 +257,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               <Button
                 onClick={() => {
                   addToCart(product)
+                  setShowToast(true)
                 }}
                 className="flex-1 bg-gradient-to-r from-[#E8A76F] to-[#D88B5A] hover:from-[#D88B5A] hover:to-[#C87A49] text-white py-2 rounded-lg font-semibold text-sm sm:text-lg h-auto transition flex items-center justify-center"
               >
@@ -327,6 +330,14 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
         </div>
       </div>
+
+      {/* Toast Notification */}
+      {showToast && (
+        <Toast
+          message={`${product.name} added to cart!`}
+          onClose={() => setShowToast(false)}
+        />
+      )}
     </div>
   )
 }

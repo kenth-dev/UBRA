@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { useApp } from "@/lib/context"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { Toast } from "@/components/ui/toast"
 import Image from "next/image"
 import Link from "next/link"
 import { Heart, ShoppingCart, Grid3x3, List, X } from "lucide-react"
@@ -47,6 +48,8 @@ export default function ShopPage() {
   const [selectedRating, setSelectedRating] = useState<number | null>(null)
   const [sortBy, setSortBy] = useState("featured")
   const [viewMode, setViewMode] = useState("grid")
+  const [showToast, setShowToast] = useState(false)
+  const [addedProductName, setAddedProductName] = useState("")
   const { addToCart, favorites, toggleFavorite } = useApp()
 
   useEffect(() => {
@@ -457,6 +460,8 @@ export default function ShopPage() {
                           onClick={(e) => {
                             e.preventDefault()
                             addToCart(product)
+                            setAddedProductName(product.name)
+                            setShowToast(true)
                           }}
                           className="w-full bg-[#8B6F47] hover:bg-[#6B4F27] text-white py-1 text-sm rounded-md transition"
                         >
@@ -476,6 +481,14 @@ export default function ShopPage() {
           </div>
         </div>
       </div>
+
+      {/* Toast Notification */}
+      {showToast && (
+        <Toast
+          message={`${addedProductName} added to cart!`}
+          onClose={() => setShowToast(false)}
+        />
+      )}
     </div>
   )
 }
