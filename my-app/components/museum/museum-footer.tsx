@@ -66,7 +66,6 @@ export function MuseumFooter() {
           {/* About */}
           <div>
             <h4 className="font-serif text-base sm:text-lg md:text-xl font-medium mb-1 sm:mb-2">UBRA</h4>
-            <p className="text-secondary-foreground/70 text-xs sm:text-sm mb-2 sm:mb-4">MUSEUM</p>
             <p className="text-secondary-foreground/70 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
               Preserving and celebrating Filipino artisan heritage through digital innovation.
             </p>

@@ -1,17 +1,80 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { ChevronDown } from "lucide-react"
+
+// Small count-up component that animates only the numeric portion of a
+// value like "500+". Uses requestAnimationFrame + an easeOut timing
+// function and expects a `start` boolean to trigger the animation.
+function CountUp({ value, start, duration = 2000 }: { value: string; start: boolean; duration?: number }) {
+  const m = String(value).match(/^(\d+)(.*)$/)
+  const target = m ? parseInt(m[1], 10) : 0
+  const suffix = m ? m[2] || "" : ""
+  const [display, setDisplay] = useState(() => `0${suffix}`)
+  const startedRef = useRef(false)
+  const rafRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    if (!start || startedRef.current) return
+    startedRef.current = true
+
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3)
+    let startTime: number | null = null
+
+    const step = (ts: number) => {
+      if (!startTime) startTime = ts
+      const elapsed = Math.min(ts - startTime, duration)
+      const progress = easeOut(elapsed / duration)
+      const current = Math.floor(target * progress)
+      setDisplay(`${current.toLocaleString()}${suffix}`)
+      if (elapsed < duration) {
+        rafRef.current = requestAnimationFrame(step)
+      } else {
+        setDisplay(`${target.toLocaleString()}${suffix}`)
+        if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      }
+    }
+
+    rafRef.current = requestAnimationFrame(step)
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
+  }, [start, duration, suffix, target])
+
+  return <div className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-primary">{display}</div>
+}
 
 export function MuseumHero() {
   const [isVisible, setIsVisible] = useState(false)
+  const statsRef = useRef<HTMLDivElement | null>(null)
+  const [statsInView, setStatsInView] = useState(false)
+
+  // Observe the stats bar and trigger the count-up once when it enters view
+  useEffect(() => {
+    if (!statsRef.current) return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setStatsInView(true)
+            obs.disconnect()
+          }
+        })
+      },
+      { threshold: 0.25 }
+    )
+    obs.observe(statsRef.current)
+    return () => obs.disconnect()
+  }, [])
 
   useEffect(() => {
     setIsVisible(true)
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <>
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background with gradient overlay */}
       <div className="absolute inset-0">
         <div
@@ -20,8 +83,10 @@ export function MuseumHero() {
             backgroundImage: `url('/images/museum/filipino-traditional-weaving-patterns-artistic-bac.jpg')`,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-brown/60 via-black/30 to-background" />
-        <div className="absolute inset-0 bg-black/30" />
+        {/* bottom gradient now fades into `bg-muted/30` so the stats bar connects
+          seamlessly with the hero (no visible top border/line). */}
+        <div className="absolute inset-0 bg-gradient-to-b from-brown/60 via-black/30 to-muted/30" />
+        <div className="absolute inset-0 bg-black/20" />
       </div>
 
       {/* Floating decorative elements */}
@@ -79,9 +144,11 @@ export function MuseumHero() {
         <ChevronDown className="h-8 w-8 text-white/80 drop-shadow-lg" />
       </div>
 
-      {/* Stats bar */}
-      <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-border shadow-2xl">
-        <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-6 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-8">
+      </section>
+
+      {/* Stats bar — use the same background as FeaturedExhibit and add spacing */}
+      <div ref={statsRef} className="w-full bg-muted/30">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {[
             { value: "500+", label: "Artifacts" },
             { value: "50+", label: "Artisans Featured" },
@@ -89,12 +156,12 @@ export function MuseumHero() {
             { value: "100+", label: "Cultural Stories" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-primary">{stat.value}</div>
-              <div className="text-xs sm:text-sm text-secondary font-medium mt-1">{stat.label}</div>
+              <CountUp value={stat.value} start={statsInView} duration={2000} />
+              <div className="text-sm sm:text-base md:text-lg text-secondary font-medium mt-2">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </>
   )
 }
