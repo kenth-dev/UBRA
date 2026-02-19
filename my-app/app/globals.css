@@ -134,15 +134,6 @@
 
 /* Added modern gradient background and animations */
 @layer utilities {
-  .texture-woven {
-    background-image: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 2px,
-      rgba(200, 169, 126, 0.03) 2px,
-      rgba(200, 169, 126, 0.03) 4px
-    );
-  }
 
   /* Enhanced hero gradient with radial and linear blend for premium artisan aesthetic */
   @keyframes gradientShift {
@@ -197,12 +188,8 @@
     position: relative;
   }
 
-  /* Replaced dark gradient with lighter, more subtle Amane Soft-inspired gradient for better text readability */
-  .gradient-amane-dark {
-    background: radial-gradient(ellipse at 50% 40%, #f5f1ed 0%, #ede5d9 25%, #e8dcc5 50%, #dccfb8 75%, #d4b896 100%);
-    background-attachment: fixed;
-    position: relative;
-  }
+  /* NOTE: removed legacy landing-specific texture & dark amane gradient —
+     unused now that the Museum is the primary entry. Kept other gradients. */
 
   /* Animated version that subtly shifts like Amane Soft */
   .gradient-amane-animated {

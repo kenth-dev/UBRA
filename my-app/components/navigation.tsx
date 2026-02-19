@@ -19,10 +19,8 @@ export function Navigation() {
     setMobileMenuOpen(false)
   }, [pathname])
 
-  // Hide entire nav on Home page because home uses its own nav
-  if (pathname === "/") {
-    return null
-  }
+  // Navigation is global — show on all routes (including root) so the
+  // museum page uses the same primary header as the rest of the app.
 
   return (
     <nav className="fixed w-full top-0 z-50 bg-background/95 backdrop-blur shadow-sm border-b border-muted">

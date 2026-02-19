@@ -144,7 +144,7 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 my-app/
 ├── app/                      # Next.js App Router pages
 │   ├── layout.tsx           # Root layout with navigation
-│   ├── page.tsx             # Landing page
+│   ├── page.tsx             # Root entry (now renders `museum` as home)
 │   ├── globals.css          # Global styles and Tailwind
 │   ├── artisan/[id]/        # Individual artisan profiles
 │   ├── auction/             # Auction listings and features
@@ -218,7 +218,7 @@ All UI components follow accessibility best practices using Radix UI primitives 
 
 ## Key Pages
 
-1. **Home** (`/`) - Landing page with feature highlights
+1. **Home** (`/`) - Museum (museum page is now the primary entry point)
 2. **Shop** (`/shop`) - Product marketplace with filters
 3. **Feed** (`/feed`) - Social content from artisans
 4. **Museum** (`/museum`) - Cultural heritage and virtual tours
