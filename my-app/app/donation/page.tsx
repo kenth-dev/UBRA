@@ -7,6 +7,7 @@ import { Users, TrendingUp, ArrowUpRight, ArrowDownLeft, Target, Gift } from "lu
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 import { donations } from "@/lib/donations"
 import { businessModel } from "@/lib/businessModel"
+import { MuseumFooter } from "@/components/museum/museum-footer"
 
 export default function DonationPage() {
   const weeklyData = [
@@ -374,27 +375,7 @@ export default function DonationPage() {
         </div>
 
         </div>
-
-        {/* Call to Action (full-bleed) */}
-        <section className="py-10 sm:py-12 md:py-16 lg:py-20 bg-secondary text-secondary-foreground w-full">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4">Join the Artisan Movement</h2>
-              <p className="max-w-xl mx-auto mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base">
-                Every purchase directly supports Filipino artisans and their communities. Shop handmade, impact lives, and
-                build a sustainable future for traditional craftsmanship.
-              </p>
-
-              <div>
-                <Link href="/shop">
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm sm:text-base">
-                    Shop & Make an Impact
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+      <MuseumFooter />
     </div>
   )
 }

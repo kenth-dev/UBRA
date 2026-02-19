@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -21,53 +22,17 @@ export function MuseumFooter() {
   }
 
   return (
-    <footer className="bg-secondary text-secondary-foreground">
-      {/* Newsletter section */}
-      <div className="border-b border-border/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
-          <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-center">
-            <div>
-              <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-medium mb-2 sm:mb-3">Stay Connected to Heritage</h3>
-              <p className="text-xs sm:text-sm text-secondary-foreground/70">
-                Subscribe to receive updates on new exhibits, artisan stories, and exclusive virtual events.
-              </p>
-            </div>
-            <form onSubmit={handleSubscribe} className="flex gap-2 sm:gap-3">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-background/10 border-border/20 text-secondary-foreground placeholder:text-secondary-foreground/50 text-sm"
-                required
-              />
-              <Button
-                type="submit"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 text-sm"
-                disabled={subscribed}
-              >
-                {subscribed ? (
-                  "Subscribed!"
-                ) : (
-                  <>
-                    <Send className="h-3 w-3 sm:h-4 sm:w-4 sm:mr-2" />
-                    <span className="hidden sm:inline">Subscribe</span>
-                  </>
-                )}
-              </Button>
-            </form>
-          </div>
-        </div>
-      </div>
-
+    <footer className="bg-[color:var(--chart-4)] text-secondary-foreground border-t border-border/20">
       {/* Main footer content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 md:py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8 md:mb-12">
           {/* About */}
-          <div>
-            <h4 className="font-serif text-base sm:text-lg md:text-xl font-medium mb-1 sm:mb-2">UBRA</h4>
+          <div className="text-left">
+            <h4 className="text-left mb-1 sm:mb-2">
+              <Image src="/logo-ubra.png" alt="UBRA" width={100} height={30} className="h-6 sm:h-8 md:h-10 object-contain" />
+            </h4>
             <p className="text-secondary-foreground/70 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
-              Preserving and celebrating Filipino artisan heritage through digital innovation.
+              Preserving Filipino artisan heritage through digital innovation.
             </p>
             <div className="flex gap-2 sm:gap-3">
               <a

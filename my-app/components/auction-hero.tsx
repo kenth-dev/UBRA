@@ -37,7 +37,7 @@ export function AuctionHero() {
   // carousel controls intentionally removed for a cleaner header on mobile
 
   return (
-    <section className="relative min-h-[60vh] md:min-h-[85vh] pt-16 md:pt-20 overflow-hidden">
+    <section className="relative h-screen overflow-hidden">
       {/* Background Carousel */}
       <div className="absolute inset-0">
         {heroSlides.map((slide, index) => (
@@ -59,7 +59,7 @@ export function AuctionHero() {
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 py-12 md:py-20 min-h-[60vh] md:min-h-[85vh] flex items-center">
+      <div className="relative z-10 container mx-auto px-4 py-12 md:py-20 h-full flex items-center">
         <div className="max-w-xl md:max-w-2xl">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 mb-6">
             <Sparkles className="h-4 w-4 text-primary" />

@@ -8,6 +8,7 @@ import { RecentlySold } from "../../components/recently-sold"
 import { AuctionHistory } from "../../components/auction-history"
 import { NewsletterSection } from "../../components/newsletter-section"
 import { BidModal } from "../../components/bid-modal"
+import { MuseumFooter } from "@/components/museum/museum-footer"
 
 export interface AuctionItem {
   id: string
@@ -42,9 +43,9 @@ export default function AuctionPage() {
         <LiveAuctions onPlaceBid={handlePlaceBid} />
         <RecentlySold />
         <AuctionHistory />
-        <NewsletterSection />
       </main>
       <BidModal item={selectedItem} isOpen={bidModalOpen} onClose={() => setBidModalOpen(false)} />
+      <MuseumFooter />
     </div>
   )
 }
